@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101a31">
+<title>Finova | Financial Flow Manager</title>
+<style>
+:root{--bg:#f5f7fb;--ink:#172238;--muted:#77839a;--line:#e7ebf3;--white:#fff;--navy:#101a31;--navy2:#1a2a4a;--blue:#5478f6;--mint:#1eb98a;--red:#e45f73;--amber:#f0b34c;--lav:#eef1ff;--shadow:0 12px 32px #1c31500a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}.shell{min-height:100vh;display:grid;grid-template-columns:236px minmax(0,1fr)}
+.sidebar{background:var(--navy);color:#fff;padding:26px 16px;display:flex;flex-direction:column;gap:30px}.brand{display:flex;align-items:center;gap:11px;padding:0 10px}.brand-icon{width:39px;height:39px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(140deg,#6e8bff,#4c5ee9);font-weight:900;font-size:21px;box-shadow:0 7px 20px #4c5ee944}.brand-name{font-size:20px;font-weight:800;letter-spacing:-.6px}.brand-sub{font-size:10px;color:#91a1c0;margin-top:3px;letter-spacing:1px;text-transform:uppercase}.nav-label{color:#7f90b1;font-size:10px;letter-spacing:1.5px;font-weight:800;padding:0 12px;margin-bottom:8px}.nav{display:grid;gap:6px}.nav button{display:flex;align-items:center;gap:12px;width:100%;border:0;background:transparent;color:#aab7d1;text-align:left;padding:12px;border-radius:11px;font-size:13px}.nav button.active,.nav button:hover{background:#ffffff12;color:#fff}.nav .nav-icon{width:22px;text-align:center;font-size:17px}.side-bottom{margin-top:auto;border:1px solid #ffffff19;background:#ffffff09;border-radius:15px;padding:15px}.side-bottom strong{font-size:12px;display:block;margin-bottom:6px}.side-bottom p{color:#9cacc9;font-size:11px;line-height:1.5;margin:0}.main{min-width:0}.topbar{height:78px;background:#ffffffd9;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,3vw,42px);gap:16px;position:sticky;top:0;z-index:3;backdrop-filter:blur(14px)}.crumb{color:var(--muted);font-size:12px}.crumb strong{color:var(--ink)}.top-actions{display:flex;align-items:center;gap:12px}.demo-pill{font-size:11px;color:#946a13;background:#fff4d8;padding:8px 11px;border-radius:999px;font-weight:700}.avatar{width:35px;height:35px;border-radius:12px;background:#e8edff;color:#425fe1;display:grid;place-items:center;font-size:12px;font-weight:800}.content{max-width:1440px;margin:auto;padding:30px clamp(16px,3vw,42px) 42px}.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px}.kicker{color:var(--blue);font-size:10px;font-weight:850;letter-spacing:1.8px;text-transform:uppercase}.page-head h1{font-size:clamp(25px,3vw,34px);letter-spacing:-1.2px;margin:8px 0 7px}.page-head p{color:var(--muted);font-size:13px;margin:0;line-height:1.6}.btn{border:0;border-radius:10px;padding:11px 15px;font-weight:750;font-size:12px;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.18s}.btn:hover{transform:translateY(-1px)}.primary{background:var(--blue);color:white;box-shadow:0 7px 16px #5478f62a}.outline{background:white;border:1px solid var(--line);color:#59677d}.soft{background:#edf1ff;color:#4e68dd}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:18px}.metric{background:var(--white);border:1px solid var(--line);border-radius:17px;padding:19px;box-shadow:var(--shadow);min-width:0}.metric-head{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;gap:6px}.metric-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:#edf1ff;color:var(--blue);font-size:17px}.metric-value{font-size:clamp(20px,2.2vw,29px);letter-spacing:-.8px;font-weight:800;margin:15px 0 7px;overflow-wrap:anywhere}.metric-foot{font-size:11px;color:var(--muted)}.up{color:var(--mint)}.down{color:var(--red)}.grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,.85fr);gap:18px;margin-bottom:18px}.panel{background:white;border:1px solid var(--line);border-radius:17px;padding:21px;box-shadow:var(--shadow);min-width:0}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}.panel h2{font-size:15px;margin:0}.sub{color:var(--muted);font-size:11px;margin-top:5px}.select{border:1px solid var(--line);background:white;padding:8px 10px;border-radius:9px;color:#56657c;font-size:11px}.chart-wrap{height:218px;position:relative}.chart-wrap canvas{width:100%;height:100%;display:block}.legend{display:flex;gap:16px;font-size:11px;color:var(--muted);margin-top:10px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}.category-list{display:grid;gap:17px}.category-top{display:flex;justify-content:space-between;gap:10px;font-size:12px;margin-bottom:8px}.category-top span:first-child{color:#5b6a80}.track{height:7px;background:#eff2f8;border-radius:99px;overflow:hidden}.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#5278f6,#8da5ff)}.quick-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:19px}.mini-stat{background:#f7f9fd;border-radius:12px;padding:13px}.mini-stat span{display:block;color:var(--muted);font-size:10px}.mini-stat strong{display:block;margin-top:7px;font-size:16px}.table-panel{padding:0;overflow:hidden}.table-panel .panel-head{padding:21px 21px 0}.table-tools{display:flex;gap:8px;flex-wrap:wrap}.search{border:1px solid var(--line);border-radius:9px;padding:9px 11px;min-width:150px;width:180px;font-size:12px;outline:none}.search:focus,input:focus,select:focus{border-color:#8fa4ff;box-shadow:0 0 0 3px #5478f615;outline:none}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:680px}th,td{padding:14px 20px;text-align:left;border-bottom:1px solid #eef1f6;font-size:11px}th{color:#8a96a9;text-transform:uppercase;letter-spacing:.8px;font-size:9px;font-weight:800}td{color:#53627a}.tx-name{font-weight:750;color:var(--ink);display:flex;align-items:center;gap:10px}.tx-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:#eff2ff;color:#506ef0;font-size:14px}.tag{display:inline-block;background:#f1f4fa;padding:6px 8px;border-radius:7px;font-size:10px}.type{font-weight:800}.income{color:var(--mint)}.expense{color:var(--red)}.actions{display:flex;gap:6px}.small-btn{border:1px solid var(--line);background:white;color:#6a7890;border-radius:7px;padding:6px 8px;font-size:10px}.empty{padding:30px;text-align:center;color:var(--muted);font-size:12px}.table-foot{padding:13px 20px;color:var(--muted);font-size:10px}.page{display:none}.page.active{display:block}.budget-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.budget-card{border:1px solid var(--line);border-radius:14px;padding:17px}.budget-card h3{font-size:13px;margin:0 0 6px}.budget-card p{font-size:11px;color:var(--muted);margin:0 0 16px}.budget-amount{font-size:20px;font-weight:800;margin-bottom:9px}.budget-form{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.budget-form input{border:1px solid var(--line);border-radius:9px;padding:10px;min-width:0;flex:1}.notice{padding:12px 14px;border-radius:12px;background:#fff8e8;border:1px solid #f1e5c5;color:#795d1f;font-size:11px;line-height:1.6;margin-bottom:18px}.modal-bg{position:fixed;inset:0;background:#0c1934a8;z-index:10;display:none;align-items:center;justify-content:center;padding:16px}.modal-bg.open{display:flex}.modal{background:white;border-radius:18px;width:min(500px,100%);padding:24px;box-shadow:0 25px 80px #0003;max-height:90vh;overflow:auto}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.modal-head h2{font-size:18px;margin:0}.close{border:0;background:#f0f3f8;border-radius:9px;width:33px;height:33px;font-size:20px;color:#627087}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:grid;gap:7px;min-width:0}.field.full{grid-column:1/-1}.field label{font-size:11px;font-weight:800;color:#5b6a80}.field input,.field select{width:100%;border:1px solid #dfe6f0;border-radius:9px;padding:11px;background:white;color:var(--ink);min-width:0}.form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:22px}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#142644;color:white;padding:12px 17px;border-radius:11px;font-size:12px;box-shadow:0 8px 25px #10233f33;display:none;z-index:20;max-width:calc(100% - 30px)}.toast.show{display:block}.footer{text-align:center;padding:25px 0 0;color:#98a3b4;font-size:10px}.mobile-menu{display:none}
+@media(max-width:1050px){.shell{grid-template-columns:76px minmax(0,1fr)}.sidebar{padding:24px 10px}.brand{padding:0;justify-content:center}.brand-text,.nav-label,.nav button .nav-text,.side-bottom{display:none}.nav button{justify-content:center;padding:13px 6px}.nav .nav-icon{font-size:19px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:1fr}}
+@media(max-width:650px){.shell{display:block}.sidebar{position:sticky;top:0;z-index:5;flex-direction:row;align-items:center;justify-content:space-between;padding:10px 14px}.brand{justify-content:flex-start}.brand-icon{width:34px;height:34px}.brand-name{font-size:18px}.brand-text{display:block}.brand-sub{display:none}.nav-label,.side-bottom{display:none}.nav{display:flex;gap:2px}.nav button{padding:9px;border-radius:9px}.nav .nav-text{display:none}.nav .nav-icon{font-size:17px;width:auto}.topbar{height:55px;padding:0 16px;position:static}.demo-pill{display:none}.content{padding-top:23px}.cards{gap:10px}.metric{padding:14px}.metric-value{font-size:21px}.metric-head{font-size:10px}.metric-icon{width:29px;height:29px}.panel{padding:16px}.table-panel{padding:0}.table-panel .panel-head{padding:16px 16px 0}.table-tools{width:100%}.search{flex:1;min-width:100px;width:100%}.budget-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.page-head .btn{width:100%}}
+</style>
+</head>
+<body>
+  
+<div id="authScreen" style="display:none; min-height:100vh; align-items:center; justify-content:center; padding:24px; background:#f5f7fb;">
+
+<div style="background:white; color:#111; padding:32px; border-radius:16px; width:100%; max-width:400px; box-shadow:0 8px 30px #00000010; position:relative; z-index:1;">
+    <h1 style="margin-top:0;">Finova</h1>
+    
+
+    <div style="display:flex; gap:10px; margin:20px 0;">
+      <button type="button" onclick="showAuthMode('login')">Login</button>
+      <button type="button" onclick="showAuthMode('signup')">Sign Up</button>
+    </div>
+
+    <form id="authForm">
+      <label for="authEmail">Email</label>
+      <input id="authEmail" type="email" required
+        placeholder="you@example.com"
+        style="display:block;width:100%;box-sizing:border-box;padding:12px;margin:8px 0 16px;">
+
+      <label for="authPassword">Password</label>
+      <input id="authPassword" type="password" required minlength="6"
+        placeholder="At least 6 characters"
+        style="display:block;width:100%;box-sizing:border-box;padding:12px;margin:8px 0 16px;">
+
+      <button id="authSubmit" type="submit">Login</button>
+    </form>
+
+    <p id="authMessage" role="status"></p>
+  </div>
+</div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">F</div><div class="brand-text"><div class="brand-name">finova</div><div class="brand-sub">Financial flow manager</div></div></div>
+    <div><div class="nav-label">WORKSPACE</div><nav class="nav" aria-label="Main navigation">
+      <button class="active" data-page="overview"><span class="nav-icon">◫</span><span class="nav-text">Overview</span></button>
+      <button data-page="transactions"><span class="nav-icon">⇄</span><span class="nav-text">Transactions</span></button>
+      <button data-page="budgets"><span class="nav-icon">◉</span><span class="nav-text">Budgets</span></button>
+    </nav></div>
+    <div class="side-bottom"><strong>✦ Build better money habits</strong><p>Track spending, understand cash flow, and make each rupee count.</p></div>
+  
+<div style="padding: 16px;">
+  <button
+    id="logoutButton"
+    class="btn outline"
+    type="button"
+    style="width: 100%;">
+    Log out
+  </button>
+</div>
+</aside>
+
+  <div class="main">
+    <header class="topbar"><div class="crumb">Workspace &nbsp;/&nbsp; <strong id="crumbLabel">Overview</strong></div><div class="top-actions"><span class="demo-pill">CLOUD SYNC ACTIVE</span><div class="avatar">FF</div></div></header>
+    <main class="content">
+      <section class="page active" id="page-overview">
+        <div class="page-head"><div><div class="kicker">YOUR FINANCIAL PICTURE</div><h1>Good to see you 👋</h1><p>Every transaction tells a story. Here's where your money stands today.</p></div><button class="btn primary" id="quickAdd">＋ Add transaction</button></div>
+        <div class="notice"><strong>Prototype mode:</strong> Transactions update your dashboard instantly and sync with your Supabase account. Your financial data is securely associated with your signed-in account.</div>
+        <div class="cards">
+          <article class="metric"><div class="metric-head">Total income <span class="metric-icon">↗</span></div><div class="metric-value" id="incomeValue">₹0</div><div class="metric-foot up">↑ Money received</div></article>
+          <article class="metric"><div class="metric-head">Total expenses <span class="metric-icon">↘</span></div><div class="metric-value" id="expenseValue">₹0</div><div class="metric-foot down">↓ Money spent</div></article>
+          <article class="metric"><div class="metric-head">Net balance <span class="metric-icon">◈</span></div><div class="metric-value" id="balanceValue">₹0</div><div class="metric-foot" id="balanceNote">Income minus expenses</div></article>
+          <article class="metric"><div class="metric-head">Transactions <span class="metric-icon">▤</span></div><div class="metric-value" id="countValue">0</div><div class="metric-foot">All recorded entries</div></article>
+        </div>
+        <div class="grid">
+          <article class="panel"><div class="panel-head"><div><h2>Cash flow</h2><div class="sub">Income compared with expenses</div></div><select class="select" id="rangeSelect"><option value="6">Last 6 months</option><option value="4">Last 4 months</option><option value="3">Last 3 months</option></select></div><div class="chart-wrap"><canvas id="cashflow" aria-label="Cash flow chart"></canvas></div><div class="legend"><span><i class="dot" style="background:#5478f6"></i>Income</span><span><i class="dot" style="background:#1eb98a"></i>Expenses</span></div></article>
+          <article class="panel"><div class="panel-head"><div><h2>Spending breakdown</h2><div class="sub">Where your expenses go</div></div></div><div class="category-list" id="categoryList"></div><div class="quick-stats"><div class="mini-stat"><span>Average expense</span><strong id="averageExpense">₹0</strong></div><div class="mini-stat"><span>Top category</span><strong id="topCategory">—</strong></div></div></article>
+        </div>
+        <article class="panel table-panel"><div class="panel-head"><div><h2>Recent transactions</h2><div class="sub">Your latest financial activity</div></div><button class="btn soft" id="viewAll">View all →</button></div><div class="table-wrap"><table><thead><tr><th>Transaction</th><th>Category</th><th>Date</th><th>Type</th><th>Amount</th><th></th></tr></thead><tbody id="recentRows"></tbody></table><div class="empty" id="recentEmpty" hidden>No transactions yet — add your first one.</div></div><div class="table-foot" id="recentFoot"></div></article>
+      </section>
+
+      <section class="page" id="page-transactions">
+        <div class="page-head"><div><div class="kicker">ALL ACTIVITY</div><h1>Transactions</h1><p>Add, edit, search and remove financial records. Dashboard figures recalculate immediately.</p></div><button class="btn primary" id="transactionAdd">＋ Add transaction</button>
+<button class="btn outline" type="button"
+  onclick="migrateDemoTransactionsToCloud().catch(e => {
+    console.error(e);
+    alert('Migration failed: ' + e.message);
+  })">
+  Import Sample Data
+</button>
+         <article class="panel table-panel"><div class="panel-head"><div><h2>Transaction history</h2><div class="sub" id="historySub">All records</div></div><div class="table-tools"><input class="search" id="searchInput" type="search" placeholder="Search transactions…" aria-label="Search transactions"><select class="select" id="filterType" aria-label="Filter by type"><option value="all">All types</option><option value="income">Income</option><option value="expense">Expenses</option></select></div></div><div class="table-wrap"><table><thead><tr><th>Transaction</th><th>Category</th><th>Date</th><th>Type</th><th>Amount</th><th>Actions</th></tr></thead><tbody id="allRows"></tbody></table><div class="empty" id="allEmpty" hidden>No matching transactions found.</div></div><div class="table-foot" id="allFoot"></div></article>
+      </section>
+
+      <section class="page" id="page-budgets">
+        <div class="page-head"><div><div class="kicker">SPENDING PLAN</div><h1>Budgets</h1><p>Set monthly category limits and compare them with expenses in your current month.</p></div></div>
+        <div class="notice">Budget usage is calculated from expense transactions dated in the current calendar month. Budgets are saved in this browser demo, not in the cloud yet.</div>
+        <article class="panel"><div class="panel-head"><div><h2>Monthly category budgets</h2><div class="sub">Adjust limits as your needs change</div></div></div><div class="budget-grid" id="budgetGrid"></div><form class="budget-form" id="budgetForm"><input id="budgetCategory" placeholder="New category name" maxlength="30" required><input id="budgetAmount" type="number" min="1" max="100000000" step="1" placeholder="Monthly limit (₹)" required><button class="btn primary" type="submit">＋ Add budget</button></form></article>
+      </section>
+      <div class="footer">FINOVA · FINANCIAL FLOW MANAGER · FFM PROJECT</div>
+    </main>
+  </div>
+</div>
+
+<div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal">
+  <div class="modal-head"><h2 id="modalTitle">Add transaction</h2><button class="close" id="closeModal" type="button" aria-label="Close">×</button></div>
+  <form id="transactionForm"><div class="form-grid">
+    <div class="field full"><label for="txDescription">Description</label><input id="txDescription" maxlength="80" placeholder="e.g. Grocery shopping" required></div>
+    <div class="field"><label for="txAmount">Amount (₹)</label><input id="txAmount" type="number" min="0.01" max="100000000" step="0.01" placeholder="0.00" required></div>
+    <div class="field"><label for="txType">Type</label><select id="txType"><option value="expense">Expense</option><option value="income">Income</option></select></div>
+    <div class="field"><label for="txCategory">Category</label><select id="txCategory"><option>Food</option><option>Transport</option><option>Education</option><option>Shopping</option><option>Bills</option><option>Health</option><option>Salary</option><option>Freelance</option><option>Entertainment</option><option>Other</option></select></div>
+    <div class="field"><label for="txDate">Date</label><input id="txDate" type="date" required></div>
+  </div><div class="form-actions"><button class="btn outline" id="cancelModal" type="button">Cancel</button><button class="btn primary" type="submit">Save transaction</button></div></form>
+</div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://nzxxaftitkmfpykhmhhj.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ZHXzyVSoiPt2Uf_GPP0-4Q_zeR0nvKe";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  console.log("Finova Supabase client initialized");
+</script>
+<script>
+const STORAGE_KEY = "finova_ffm_transactions_v2";
+const BUDGET_KEY = "finova_ffm_budgets_v1";
+const $ = id => document.getElementById(id);
+const money = new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:2});
+const isoDate = d => { const x = new Date(d.getTime()-d.getTimezoneOffset()*60000); return x.toISOString().slice(0,10); };
+const daysAgo = n => { const d=new Date(); d.setDate(d.getDate()-n); return isoDate(d); };
+const monthKey = d => d.slice(0,7);
+const demoData = [
+{id:"seed-1",description:"Monthly allowance",amount:12000,type:"income",category:"Other",date:daysAgo(25)},
+{id:"seed-2",description:"Course materials",amount:1450,type:"expense",category:"Education",date:daysAgo(23)},
+{id:"seed-3",description:"Freelance design",amount:4500,type:"income",category:"Freelance",date:daysAgo(17)},
+{id:"seed-4",description:"Groceries",amount:980,type:"expense",category:"Food",date:daysAgo(13)},
+{id:"seed-5",description:"Bus and auto",amount:620,type:"expense",category:"Transport",date:daysAgo(9)},
+{id:"seed-6",description:"Mobile recharge",amount:299,type:"expense",category:"Bills",date:daysAgo(5)},
+{id:"seed-7",description:"Dinner with friends",amount:540,type:"expense",category:"Food",date:daysAgo(2)}
+];
+
+async function migrateDemoTransactionsToCloud() {
+  const { data: { user }, error: authError } =
+    await supabaseClient.auth.getUser();
+
+  if (authError) throw authError;
+  if (!user) {
+    toast("Please log in before migrating.");
+    return;
+  }
+
+  const { data: existing, error: readError } =
+    await supabaseClient
+      .from("transactions")
+      .select("id")
+      .eq("user_id", user.id)
+      .limit(1);
+
+  if (readError) throw readError;
+
+  if (existing.length > 0) {
+    toast("Cloud transactions already exist. Nothing imported.");
+    return;
+  }
+
+  const rows = demoData.map(t => ({
+    user_id: user.id,
+    description: t.description,
+    amount: t.amount,
+    type: t.type,
+    category: t.category,
+    transaction_date: t.date
+  }));
+
+  const { error } = await supabaseClient
+    .from("transactions")
+    .insert(rows);
+
+  if (error) throw error;
+
+  toast("Sample transactions uploaded! Refresh the page.");
+  console.log("Finova demo data migration completed.");
+}
+
+function loadJSON(key,fallback){try{const raw=localStorage.getItem(key);return raw===null?fallback:JSON.parse(raw)}catch(e){return fallback}}
+
+async function loadTransactionsFromCloud() {
+  const { data: { user }, error: userError } =
+    await supabaseClient.auth.getUser();
+
+  if (userError) throw userError;
+  if (!user) throw new Error("Please log in first.");
+
+  const { data, error } = await supabaseClient
+    .from("transactions")
+    .select("*")
+    .eq("user_id", user.id)
+    .order("transaction_date", { ascending: false });
+
+  if (error) throw error;
+
+  transactions = data.map(row => ({
+    id: row.id,
+    description: row.description,
+    amount: Number(row.amount),
+    type: row.type,
+    category: row.category,
+    date: row.transaction_date
+  }));
+
+  render();
+}
+async function loadBudgetsFromCloud() {
+  const { data: { user }, error: userError } =
+    await supabaseClient.auth.getUser();
+
+  if (userError) throw userError;
+  if (!user) throw new Error("Please log in first.");
+
+  const { data, error } = await supabaseClient
+    .from("budgets")
+    .select("category, monthly_limit")
+    .eq("user_id", user.id);
+
+  if (error) throw error;
+
+  budgets = {};
+
+  data.forEach(row => {
+    budgets[row.category] = Number(row.monthly_limit);
+  });
+
+  saveJSON(BUDGET_KEY, budgets);
+  renderBudgets();
+}
+
+
+let transactions=loadJSON(STORAGE_KEY,null); if(!Array.isArray(transactions)){transactions=demoData;saveJSON(STORAGE_KEY,transactions)}
+
+let budgets = {};
+let editingId=null;
+function saveJSON(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(e){toast("Browser storage unavailable. Changes may not persist.")}}
+function fmt(n){return money.format(Number(n)||0)}
+function niceDate(s){if(!s)return "—";const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})}
+function toast(message){const el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove("show"),2500)}
+function totals(list=transactions){return list.reduce((a,t)=>{a[t.type==="income"?"income":"expense"]+=Number(t.amount)||0;return a},{income:0,expense:0})}
+function iconFor(t){if(t.type==="income")return "↗";return ({Food:"☕",Transport:"↗",Education:"▤",Shopping:"◇",Bills:"▧",Health:"＋",Entertainment:"♫"})[t.category]||"↘"}
+function makeCell(text,className){const td=document.createElement("td");td.textContent=text;if(className)td.className=className;return td}
+function transactionRow(t,withActions=true){const tr=document.createElement("tr");const nameTd=document.createElement("td");const nameWrap=document.createElement("div");nameWrap.className="tx-name";const icon=document.createElement("span");icon.className="tx-icon";icon.textContent=iconFor(t);const name=document.createElement("span");name.textContent=t.description;nameWrap.append(icon,name);nameTd.append(nameWrap);const cat=makeCell("");const tag=document.createElement("span");tag.className="tag";tag.textContent=t.category;cat.append(tag);tr.append(nameTd,cat,makeCell(niceDate(t.date)),makeCell(t.type==="income"?"Income":"Expense","type "+t.type),makeCell((t.type==="income"?"+":"−")+fmt(t.amount),t.type==="income"?"income":"expense"));const action=makeCell("");if(withActions){const wrap=document.createElement("div");wrap.className="actions";const edit=document.createElement("button");edit.className="small-btn";edit.textContent="Edit";edit.type="button";edit.addEventListener("click",()=>editTransaction(t.id));const del=document.createElement("button");del.className="small-btn";del.textContent="Delete";del.type="button";del.addEventListener("click",()=>deleteTransaction(t.id));wrap.append(edit,del);action.append(wrap)}tr.append(action);return tr}
+function renderRows(){const sorted=[...transactions].sort((a,b)=>b.date.localeCompare(a.date));const recent=$("recentRows");recent.replaceChildren();sorted.slice(0,5).forEach(t=>recent.append(transactionRow(t,false)));$("recentEmpty").hidden=sorted.length>0;$("recentFoot").textContent=`Showing ${Math.min(5,sorted.length)} of ${sorted.length} transaction${sorted.length===1?"":"s"}.`;const q=$("searchInput").value.trim().toLowerCase();const type=$("filterType").value;const filtered=sorted.filter(t=>(type==="all"||t.type===type)&&[t.description,t.category,t.date,t.type].some(v=>String(v).toLowerCase().includes(q)));const all=$("allRows");all.replaceChildren();filtered.forEach(t=>all.append(transactionRow(t,true)));$("allEmpty").hidden=filtered.length>0;$("allFoot").textContent=`${filtered.length} matching record${filtered.length===1?"":"s"} · ${sorted.length} total`; $("historySub").textContent=`${sorted.length} saved in this browser demo`}
+function renderCategories(){const list=$("categoryList");list.replaceChildren();const map={};transactions.filter(t=>t.type==="expense").forEach(t=>map[t.category]=(map[t.category]||0)+Number(t.amount));const entries=Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,5);if(!entries.length){const p=document.createElement("p");p.className="sub";p.textContent="Add an expense to see your spending breakdown.";list.append(p)}else{const max=entries[0][1]||1;entries.forEach(([name,amount])=>{const row=document.createElement("div");const top=document.createElement("div");top.className="category-top";const n=document.createElement("span");n.textContent=name;const val=document.createElement("strong");val.textContent=fmt(amount);top.append(n,val);const track=document.createElement("div");track.className="track";const fill=document.createElement("div");fill.className="fill";fill.style.width=Math.max(3,amount/max*100)+"%";track.append(fill);row.append(top,track);list.append(row)})}const expenseTransactions=transactions.filter(t=>t.type==="expense");$("averageExpense").textContent=fmt(expenseTransactions.length?expenseTransactions.reduce((a,t)=>a+Number(t.amount),0)/expenseTransactions.length:0);$("topCategory").textContent=entries.length?entries[0][0]:"—"}
+function renderMetrics(){const t=totals();$("incomeValue").textContent=fmt(t.income);$("expenseValue").textContent=fmt(t.expense);$("balanceValue").textContent=fmt(t.income-t.expense);$("countValue").textContent=transactions.length.toLocaleString("en-IN");$("balanceNote").textContent=t.income-t.expense<0?"Expenses exceed income":"Income minus expenses";$("balanceNote").className="metric-foot "+(t.income-t.expense<0?"down":"up")}
+function drawChart(){const canvas=$("cashflow"),rect=canvas.getBoundingClientRect();if(!rect.width||!rect.height)return;const ratio=window.devicePixelRatio||1;canvas.width=Math.round(rect.width*ratio);canvas.height=Math.round(rect.height*ratio);const ctx=canvas.getContext("2d");ctx.scale(ratio,ratio);const w=rect.width,h=rect.height;ctx.clearRect(0,0,w,h);const count=Number($("rangeSelect").value),now=new Date(),months=[];for(let i=count-1;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push({key:`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`,label:d.toLocaleDateString("en-IN",{month:"short"}),income:0,expense:0})}transactions.forEach(t=>{const m=months.find(m=>m.key===monthKey(t.date));if(m)m[t.type==="income"?"income":"expense"]+=Number(t.amount)});const max=Math.max(1,...months.flatMap(m=>[m.income,m.expense]));const left=8,right=8,top=10,bottom=28,ph=h-top-bottom,pw=w-left-right,group=pw/count,bw=Math.min(17,group*.24);ctx.font="10px system-ui";for(let i=0;i<=3;i++){const y=top+ph*i/3;ctx.strokeStyle="#edf1f6";ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(w-right,y);ctx.stroke()}months.forEach((m,i)=>{const x=left+group*(i+.5),ih=m.income/max*ph,eh=m.expense/max*ph;ctx.fillStyle="#5478f6";ctx.fillRect(x-bw-2,top+ph-ih,bw,ih);ctx.fillStyle="#1eb98a";ctx.fillRect(x+2,top+ph-eh,bw,eh);ctx.fillStyle="#8793a7";ctx.textAlign="center";ctx.fillText(m.label,x,h-8)})}
+function currentMonthExpenses(category){const now=isoDate(new Date()).slice(0,7);return transactions.filter(t=>t.type==="expense"&&t.category===category&&t.date.slice(0,7)===now).reduce((s,t)=>s+Number(t.amount),0)}
+function renderBudgets(){const grid=$("budgetGrid");grid.replaceChildren();Object.entries(budgets).forEach(([category,limit])=>{const spent=currentMonthExpenses(category),pct=limit>0?spent/limit*100:0;const card=document.createElement("div");card.className="budget-card";const h=document.createElement("h3");h.textContent=category;const p=document.createElement("p");p.textContent="Monthly spending limit";const amount=document.createElement("div");amount.className="budget-amount";amount.textContent=fmt(spent);const sub=document.createElement("p");sub.textContent=`of ${fmt(limit)} used · ${Math.round(pct)}%`;const track=document.createElement("div");track.className="track";const fill=document.createElement("div");fill.className="fill";fill.style.width=Math.min(100,pct)+"%";if(pct>100)fill.style.background="linear-gradient(90deg,#e45f73,#f39aa7)";track.append(fill);const edit=document.createElement("button");edit.className="btn outline";edit.style.marginTop="14px";edit.textContent="Edit limit";
+edit.addEventListener("click", async () => {
+  const value = prompt(`Set monthly budget for ${category} (₹):`, limit);
+  if (value === null) return;
+
+  const n = Number(value);
+  if (!Number.isFinite(n) || n <= 0) {
+    toast("Enter a valid budget greater than zero.");
+    return;
+  }
+
+  try {
+    const { data: { user }, error: userError } =
+      await supabaseClient.auth.getUser();
+
+    if (userError) throw userError;
+    if (!user) throw new Error("Please log in first.");
+
+    const { error } = await supabaseClient
+      .from("budgets")
+      .update({ monthly_limit: n })
+      .eq("user_id", user.id)
+      .eq("category", category);
+
+    if (error) throw error;
+
+    budgets[category] = n;
+    saveJSON(BUDGET_KEY, budgets);
+    renderBudgets();
+    toast("Budget updated in cloud.");
+  } catch (error) {
+    console.error("Budget update failed:", error);
+    toast("Could not update budget: " + error.message);
+  }
+});
+card.append(h,p,amount,sub,track,edit);grid.append(card)})}
+function render(){renderMetrics();renderRows();renderCategories();renderBudgets();drawChart()}
+function switchPage(name){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+name));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===name));$("crumbLabel").textContent=({overview:"Overview",transactions:"Transactions",budgets:"Budgets"})[name];if(name==="overview")requestAnimationFrame(drawChart)}
+function openModal(){ $("modalBg").classList.add("open");$("modalTitle").textContent=editingId?"Edit transaction":"Add transaction";$("txDescription").focus()}
+function closeModal(){ $("modalBg").classList.remove("open");$("transactionForm").reset();editingId=null;$("txDate").value=isoDate(new Date())}
+
+async function addTransaction() {
+  const description = $("txDescription").value.trim();
+  const amount = Number($("txAmount").value);
+  const type = $("txType").value;
+  const category = $("txCategory").value;
+  const date = $("txDate").value;
+
+  if (!description || !Number.isFinite(amount) || amount <= 0 || !date) {
+    toast("Enter a description, valid amount, and date.");
+    return;
+  }
+
+  try {
+    const { data: { user }, error: userError } =
+      await supabaseClient.auth.getUser();
+
+    if (userError) throw userError;
+    if (!user) throw new Error("Please log in first.");
+
+    const { data, error } = await supabaseClient
+      .from("transactions")
+      .insert({
+        user_id: user.id,
+        description,
+        amount,
+        type,
+        category,
+        transaction_date: date
+      })
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    transactions.unshift({
+      id: data.id,
+      description: data.description,
+      amount: Number(data.amount),
+      type: data.type,
+      category: data.category,
+      date: data.transaction_date
+    });
+
+    saveJSON(STORAGE_KEY, transactions);
+    closeModal();
+    render();
+    toast("Transaction saved to cloud.");
+  } catch (error) {
+    toast("Could not save: " + error.message);
+  }
+}
+
+async function editTransaction(id) {
+  toast("Cloud editing will be connected next.");
+}
+
+async function deleteTransaction(id) {
+  const transaction = transactions.find(t => t.id === id);
+  if (!transaction) return;
+
+  if (!confirm(`Delete "${transaction.description}"?`)) return;
+
+  try {
+    const { data: { user }, error: userError } =
+      await supabaseClient.auth.getUser();
+
+    if (userError) throw userError;
+    if (!user) throw new Error("Please log in first.");
+
+    const { error } = await supabaseClient
+      .from("transactions")
+      .delete()
+      .eq("id", id)
+      .eq("user_id", user.id);
+
+    if (error) throw error;
+
+    transactions = transactions.filter(t => t.id !== id);
+    saveJSON(STORAGE_KEY, transactions);
+    render();
+    toast("Transaction deleted.");
+  } catch (error) {
+    toast("Could not delete: " + error.message);
+  }
+}
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>switchPage(b.dataset.page)));
+$("quickAdd").addEventListener("click", () => openModal());
+$("transactionAdd").addEventListener("click", () => openModal());$("viewAll").addEventListener("click",()=>switchPage("transactions"));$("closeModal").addEventListener("click",closeModal);$("cancelModal").addEventListener("click",closeModal);$("modalBg").addEventListener("click",e=>{if(e.target===$("modalBg"))closeModal()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});$("rangeSelect").addEventListener("change",drawChart);window.addEventListener("resize",()=>requestAnimationFrame(drawChart));$("searchInput").addEventListener("input",renderRows);$("filterType").addEventListener("change",renderRows);
+
+$("transactionForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const description = $("txDescription").value.trim();
+  const amount = Number($("txAmount").value);
+  const type = $("txType").value;
+  const category = $("txCategory").value;
+  const date = $("txDate").value;
+
+  if (!description || !Number.isFinite(amount) || amount <= 0 || !date) {
+    toast("Enter a description, valid amount, and date.");
+    return;
+  }
+
+  try {
+    const { data: { user }, error: userError } =
+      await supabaseClient.auth.getUser();
+
+    if (userError) throw userError;
+    if (!user) throw new Error("Please log in first.");
+
+    if (editingId) {
+      const { data, error } = await supabaseClient
+        .from("transactions")
+        .update({ description, amount, type, category, transaction_date: date })
+        .eq("id", editingId)
+        .eq("user_id", user.id)
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      transactions = transactions.map(t =>
+        t.id === editingId
+          ? { ...t, description, amount, type, category, date: data.transaction_date }
+          : t
+      );
+    } else {
+      const { data, error } = await supabaseClient
+        .from("transactions")
+        .insert({
+          user_id: user.id,
+          description,
+          amount,
+          type,
+          category,
+          transaction_date: date
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      transactions.unshift({
+        id: data.id,
+        description: data.description,
+        amount: Number(data.amount),
+        type: data.type,
+        category: data.category,
+        date: data.transaction_date
+      });
+    }
+
+    saveJSON(STORAGE_KEY, transactions);
+    render();
+    closeModal();
+    toast("Transaction saved to cloud.");
+  } catch (error) {
+    toast("Could not save: " + error.message);
+  }
+});
+
+$("budgetForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = $("budgetCategory").value.trim();
+  const amount = Number($("budgetAmount").value);
+
+  if (!name || !Number.isFinite(amount) || amount <= 0) {
+    toast("Enter a category and a valid budget.");
+    return;
+  }
+
+  if (Object.keys(budgets).some(
+    k => k.toLowerCase() === name.toLowerCase()
+  )) {
+    toast("A budget already exists for that category.");
+    return;
+  }
+
+  try {
+    const { data: { user }, error: userError } =
+      await supabaseClient.auth.getUser();
+
+    if (userError) throw userError;
+    if (!user) throw new Error("Please log in first.");
+
+    const { data, error } = await supabaseClient
+      .from("budgets")
+      .insert({
+        user_id: user.id,
+        category: name,
+        monthly_limit: amount
+      })
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    budgets[data.category] = Number(data.monthly_limit);
+
+    saveJSON(BUDGET_KEY, budgets);
+    $("budgetForm").reset();
+    renderBudgets();
+    toast("Budget saved to cloud.");
+  } catch (error) {
+    toast("Could not save budget: " + error.message);
+  }
+});
+$("txDate").value=isoDate(new Date());render();
+</script>
+
+<script>
+  let authMode = "login";
+
+  function showAuthMode(mode) {
+    authMode = mode;
+
+    document.getElementById("authSubmit").textContent =
+      mode === "login" ? "Login" : "Create Account";
+
+    document.getElementById("authMessage").textContent =
+      mode === "login"
+        ? "Log in to access your account."
+        : "Create your Finova account.";
+  }
+
+  document.getElementById("authForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById("authEmail").value.trim();
+    const password = document.getElementById("authPassword").value;
+    const message = document.getElementById("authMessage");
+    const submitButton = document.getElementById("authSubmit");
+
+    submitButton.disabled = true;
+    message.textContent = "Please wait...";
+
+    try {
+      let result;
+
+      if (authMode === "signup") {
+        result = await supabaseClient.auth.signUp({
+          email,
+          password
+        });
+      } else {
+        result = await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+      }
+
+      if (result.error) throw result.error;
+
+      if (authMode === "signup" && !result.data.session) {
+        message.textContent =
+          "Account created! Check your email to confirm your account, then log in.";
+      } else {
+        message.textContent = "Login successful!";
+location.reload();      }
+    } catch (error) {
+      message.textContent = error.message || "Something went wrong.";
+    } finally {
+      submitButton.disabled = false;
+    }
+  });
+
+ 
+function showLoginScreen() {
+  const authScreen = document.getElementById("authScreen");
+  const loginCard = authScreen.firstElementChild;
+
+  authScreen.style.cssText +=
+    ";display:flex!important;position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;z-index:999999!important;background:#f5f7fb!important;align-items:center!important;justify-content:center!important;";
+
+  loginCard.style.cssText +=
+    ";display:block!important;visibility:visible!important;opacity:1!important;background:white!important;color:#111!important;position:relative!important;z-index:1000000!important;";
+
+  document.querySelectorAll(".sidebar, .main").forEach(element => {
+    element.style.display = "none";
+  });
+}
+
+async function checkFinovaSession() {
+  const { data, error } = await supabaseClient.auth.getSession();
+  const authScreen = document.getElementById("authScreen");
+if (error || !data.session) {
+  authScreen.style.display = "flex";
+
+  document.querySelectorAll(".sidebar, .main").forEach(element => {
+    element.style.display = "none";
+  });
+
+  return;
+}
+  try {
+    await loadTransactionsFromCloud();
+    await loadBudgetsFromCloud();
+    authScreen.style.display = "none";
+    document.querySelectorAll(".sidebar, .main").forEach(element => {
+      element.style.display = "";
+    });
+  } catch (error) {
+    console.error("Cloud transaction loading failed:", error);
+    document.getElementById("authMessage").textContent =
+      "Could not load cloud transactions: " + error.message;
+    authScreen.style.display = "flex";
+  }
+}
+
+
+  showAuthMode("login");
+  checkFinovaSession();
+  
+
+document.getElementById("logoutButton")?.addEventListener("click", async () => {
+  try {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+      alert("Logout failed: " + error.message);
+      return;
+    }
+
+showLoginScreen();    document.querySelectorAll(".sidebar, .main").forEach(element => {
+      element.style.display = "none";
+    });
+
+    showAuthMode("login");
+  } catch (error) {
+    alert("Logout failed: " + error.message);
+  }
+});
+
+
+</script>
+</body>
+
+</body>
+</html>
