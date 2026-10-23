@@ -3,171 +3,1710 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101a31">
-<title>Finova | Financial Flow Manager</title>
+<meta name="theme-color" content="#0b1120">
+<title>Finova | Financial Intelligence & Wealth Management Suite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Motion One (Framer Motion engine for vanilla JS) -->
+<script src="https://cdn.jsdelivr.net/npm/motion@10.16.2/dist/motion.umd.js"></script>
+<!-- Chart.js for Advanced Visualizations -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root{--bg:#f5f7fb;--ink:#172238;--muted:#77839a;--line:#e7ebf3;--white:#fff;--navy:#101a31;--navy2:#1a2a4a;--blue:#5478f6;--mint:#1eb98a;--red:#e45f73;--amber:#f0b34c;--lav:#eef1ff;--shadow:0 12px 32px #1c31500a}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}.shell{min-height:100vh;display:grid;grid-template-columns:236px minmax(0,1fr)}
-.sidebar{background:var(--navy);color:#fff;padding:26px 16px;display:flex;flex-direction:column;gap:30px}.brand{display:flex;align-items:center;gap:11px;padding:0 10px}.brand-icon{width:39px;height:39px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(140deg,#6e8bff,#4c5ee9);font-weight:900;font-size:21px;box-shadow:0 7px 20px #4c5ee944}.brand-name{font-size:20px;font-weight:800;letter-spacing:-.6px}.brand-sub{font-size:10px;color:#91a1c0;margin-top:3px;letter-spacing:1px;text-transform:uppercase}.nav-label{color:#7f90b1;font-size:10px;letter-spacing:1.5px;font-weight:800;padding:0 12px;margin-bottom:8px}.nav{display:grid;gap:6px}.nav button{display:flex;align-items:center;gap:12px;width:100%;border:0;background:transparent;color:#aab7d1;text-align:left;padding:12px;border-radius:11px;font-size:13px}.nav button.active,.nav button:hover{background:#ffffff12;color:#fff}.nav .nav-icon{width:22px;text-align:center;font-size:17px}.side-bottom{margin-top:auto;border:1px solid #ffffff19;background:#ffffff09;border-radius:15px;padding:15px}.side-bottom strong{font-size:12px;display:block;margin-bottom:6px}.side-bottom p{color:#9cacc9;font-size:11px;line-height:1.5;margin:0}.main{min-width:0}.topbar{height:78px;background:#ffffffd9;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,3vw,42px);gap:16px;position:sticky;top:0;z-index:3;backdrop-filter:blur(14px)}.crumb{color:var(--muted);font-size:12px}.crumb strong{color:var(--ink)}.top-actions{display:flex;align-items:center;gap:12px}.demo-pill{font-size:11px;color:#946a13;background:#fff4d8;padding:8px 11px;border-radius:999px;font-weight:700}.avatar{width:35px;height:35px;border-radius:12px;background:#e8edff;color:#425fe1;display:grid;place-items:center;font-size:12px;font-weight:800}.content{max-width:1440px;margin:auto;padding:30px clamp(16px,3vw,42px) 42px}.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px}.kicker{color:var(--blue);font-size:10px;font-weight:850;letter-spacing:1.8px;text-transform:uppercase}.page-head h1{font-size:clamp(25px,3vw,34px);letter-spacing:-1.2px;margin:8px 0 7px}.page-head p{color:var(--muted);font-size:13px;margin:0;line-height:1.6}.btn{border:0;border-radius:10px;padding:11px 15px;font-weight:750;font-size:12px;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.18s}.btn:hover{transform:translateY(-1px)}.primary{background:var(--blue);color:white;box-shadow:0 7px 16px #5478f62a}.outline{background:white;border:1px solid var(--line);color:#59677d}.soft{background:#edf1ff;color:#4e68dd}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:18px}.metric{background:var(--white);border:1px solid var(--line);border-radius:17px;padding:19px;box-shadow:var(--shadow);min-width:0}.metric-head{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;gap:6px}.metric-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:#edf1ff;color:var(--blue);font-size:17px}.metric-value{font-size:clamp(20px,2.2vw,29px);letter-spacing:-.8px;font-weight:800;margin:15px 0 7px;overflow-wrap:anywhere}.metric-foot{font-size:11px;color:var(--muted)}.up{color:var(--mint)}.down{color:var(--red)}.grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,.85fr);gap:18px;margin-bottom:18px}.panel{background:white;border:1px solid var(--line);border-radius:17px;padding:21px;box-shadow:var(--shadow);min-width:0}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}.panel h2{font-size:15px;margin:0}.sub{color:var(--muted);font-size:11px;margin-top:5px}.select{border:1px solid var(--line);background:white;padding:8px 10px;border-radius:9px;color:#56657c;font-size:11px}.chart-wrap{height:218px;position:relative}.chart-wrap canvas{width:100%;height:100%;display:block}.legend{display:flex;gap:16px;font-size:11px;color:var(--muted);margin-top:10px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}.category-list{display:grid;gap:17px}.category-top{display:flex;justify-content:space-between;gap:10px;font-size:12px;margin-bottom:8px}.category-top span:first-child{color:#5b6a80}.track{height:7px;background:#eff2f8;border-radius:99px;overflow:hidden}.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#5278f6,#8da5ff)}.quick-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:19px}.mini-stat{background:#f7f9fd;border-radius:12px;padding:13px}.mini-stat span{display:block;color:var(--muted);font-size:10px}.mini-stat strong{display:block;margin-top:7px;font-size:16px}.table-panel{padding:0;overflow:hidden}.table-panel .panel-head{padding:21px 21px 0}.table-tools{display:flex;gap:8px;flex-wrap:wrap}.search{border:1px solid var(--line);border-radius:9px;padding:9px 11px;min-width:150px;width:180px;font-size:12px;outline:none}.search:focus,input:focus,select:focus{border-color:#8fa4ff;box-shadow:0 0 0 3px #5478f615;outline:none}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:680px}th,td{padding:14px 20px;text-align:left;border-bottom:1px solid #eef1f6;font-size:11px}th{color:#8a96a9;text-transform:uppercase;letter-spacing:.8px;font-size:9px;font-weight:800}td{color:#53627a}.tx-name{font-weight:750;color:var(--ink);display:flex;align-items:center;gap:10px}.tx-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:#eff2ff;color:#506ef0;font-size:14px}.tag{display:inline-block;background:#f1f4fa;padding:6px 8px;border-radius:7px;font-size:10px}.type{font-weight:800}.income{color:var(--mint)}.expense{color:var(--red)}.actions{display:flex;gap:6px}.small-btn{border:1px solid var(--line);background:white;color:#6a7890;border-radius:7px;padding:6px 8px;font-size:10px}.empty{padding:30px;text-align:center;color:var(--muted);font-size:12px}.table-foot{padding:13px 20px;color:var(--muted);font-size:10px}.page{display:none}.page.active{display:block}.budget-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.budget-card{border:1px solid var(--line);border-radius:14px;padding:17px}.budget-card h3{font-size:13px;margin:0 0 6px}.budget-card p{font-size:11px;color:var(--muted);margin:0 0 16px}.budget-amount{font-size:20px;font-weight:800;margin-bottom:9px}.budget-form{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.budget-form input{border:1px solid var(--line);border-radius:9px;padding:10px;min-width:0;flex:1}.notice{padding:12px 14px;border-radius:12px;background:#fff8e8;border:1px solid #f1e5c5;color:#795d1f;font-size:11px;line-height:1.6;margin-bottom:18px}.modal-bg{position:fixed;inset:0;background:#0c1934a8;z-index:10;display:none;align-items:center;justify-content:center;padding:16px}.modal-bg.open{display:flex}.modal{background:white;border-radius:18px;width:min(500px,100%);padding:24px;box-shadow:0 25px 80px #0003;max-height:90vh;overflow:auto}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.modal-head h2{font-size:18px;margin:0}.close{border:0;background:#f0f3f8;border-radius:9px;width:33px;height:33px;font-size:20px;color:#627087}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:grid;gap:7px;min-width:0}.field.full{grid-column:1/-1}.field label{font-size:11px;font-weight:800;color:#5b6a80}.field input,.field select{width:100%;border:1px solid #dfe6f0;border-radius:9px;padding:11px;background:white;color:var(--ink);min-width:0}.form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:22px}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#142644;color:white;padding:12px 17px;border-radius:11px;font-size:12px;box-shadow:0 8px 25px #10233f33;display:none;z-index:20;max-width:calc(100% - 30px)}.toast.show{display:block}.footer{text-align:center;padding:25px 0 0;color:#98a3b4;font-size:10px}.mobile-menu{display:none}
-@media(max-width:1050px){.shell{grid-template-columns:76px minmax(0,1fr)}.sidebar{padding:24px 10px}.brand{padding:0;justify-content:center}.brand-text,.nav-label,.nav button .nav-text,.side-bottom{display:none}.nav button{justify-content:center;padding:13px 6px}.nav .nav-icon{font-size:19px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:1fr}}
-@media(max-width:650px){.shell{display:block}.sidebar{position:sticky;top:0;z-index:5;flex-direction:row;align-items:center;justify-content:space-between;padding:10px 14px}.brand{justify-content:flex-start}.brand-icon{width:34px;height:34px}.brand-name{font-size:18px}.brand-text{display:block}.brand-sub{display:none}.nav-label,.side-bottom{display:none}.nav{display:flex;gap:2px}.nav button{padding:9px;border-radius:9px}.nav .nav-text{display:none}.nav .nav-icon{font-size:17px;width:auto}.topbar{height:55px;padding:0 16px;position:static}.demo-pill{display:none}.content{padding-top:23px}.cards{gap:10px}.metric{padding:14px}.metric-value{font-size:21px}.metric-head{font-size:10px}.metric-icon{width:29px;height:29px}.panel{padding:16px}.table-panel{padding:0}.table-panel .panel-head{padding:16px 16px 0}.table-tools{width:100%}.search{flex:1;min-width:100px;width:100%}.budget-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.page-head .btn{width:100%}}
+:root {
+  --bg: #f8fafc;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --white: #ffffff;
+  --panel: #ffffff;
+  --topbar: rgba(255, 255, 255, 0.88);
+  --navy: #090f1d;
+  --navy2: #111a2e;
+  --blue: #4f46e5;
+  --blue-hover: #4338ca;
+  --mint: #10b981;
+  --mint-bg: #ecfdf5;
+  --red: #f43f5e;
+  --red-bg: #fff1f2;
+  --amber: #f59e0b;
+  --amber-bg: #fffbeb;
+  --purple: #8b5cf6;
+  --purple-bg: #f5f3ff;
+  --lav: #f1f5f9;
+  --shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
+  --card-border: #e2e8f0;
+  --input-bg: #ffffff;
+  --tag-bg: #f1f5f9;
+}
+
+[data-theme="dark"] {
+  --bg: #070c18;
+  --ink: #f8fafc;
+  --muted: #94a3b8;
+  --line: #1e293b;
+  --white: #0f172a;
+  --panel: #0f172a;
+  --topbar: rgba(15, 23, 42, 0.88);
+  --navy: #050811;
+  --navy2: #0b1120;
+  --blue: #6366f1;
+  --blue-hover: #4f46e5;
+  --mint: #10b981;
+  --mint-bg: rgba(16, 185, 129, 0.15);
+  --red: #f43f5e;
+  --red-bg: rgba(244, 63, 94, 0.15);
+  --amber: #fbbf24;
+  --amber-bg: rgba(251, 191, 36, 0.15);
+  --purple: #a855f7;
+  --purple-bg: rgba(168, 85, 247, 0.15);
+  --lav: #1e293b;
+  --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  --card-border: #1e293b;
+  --input-bg: #070c18;
+  --tag-bg: #1e293b;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  transition: background 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-x: hidden;
+}
+
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+}
+
+/* Sidebar */
+.sidebar {
+  background: var(--navy);
+  color: #fff;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 8px;
+}
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+  font-weight: 800;
+  font-size: 20px;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+}
+.brand-name { font-size: 20px; font-weight: 800; letter-spacing: -0.6px; color: #fff; }
+.brand-sub { font-size: 10px; color: #94a3b8; letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+.nav-label { color: #64748b; font-size: 10px; letter-spacing: 1.5px; font-weight: 700; padding: 0 12px; margin-bottom: 8px; }
+.nav { display: grid; gap: 4px; }
+.nav button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #94a3b8;
+  text-align: left;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav button.active, .nav button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transform: translateX(2px);
+}
+.nav button.active {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.25), rgba(99, 102, 241, 0.05));
+  border-left: 3px solid #6366f1;
+  color: #fff;
+  font-weight: 600;
+}
+.nav .nav-icon { width: 20px; text-align: center; font-size: 16px; }
+
+.side-bottom {
+  margin-top: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 14px;
+  padding: 14px;
+}
+.side-bottom strong { font-size: 12px; display: block; margin-bottom: 4px; color: #fff; }
+.side-bottom p { color: #94a3b8; font-size: 11px; line-height: 1.5; margin: 0; }
+
+/* Main Area */
+.main { min-width: 0; display: flex; flex-direction: column; }
+.topbar {
+  height: 72px;
+  background: var(--topbar);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(18px, 3vw, 40px);
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(14px);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.crumb { color: var(--muted); font-size: 12px; font-weight: 500; }
+.crumb strong { color: var(--ink); }
+.top-actions { display: flex; align-items: center; gap: 10px; }
+
+.theme-btn {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  transition: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.theme-btn:hover { background: var(--lav); transform: rotate(15deg); }
+
+.demo-pill {
+  font-size: 11px;
+  color: #b45309;
+  background: #fef3c7;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+[data-theme="dark"] .demo-pill {
+  color: #fde68a;
+  background: rgba(245, 158, 11, 0.15);
+}
+.demo-pill::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+.avatar:hover { transform: scale(1.08); box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4); }
+
+.content {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px clamp(16px, 3vw, 40px) 44px;
+  flex: 1;
+}
+
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.page-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.kicker { color: var(--blue); font-size: 10.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; }
+.page-head h1 { font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.8px; margin: 6px 0; color: var(--ink); font-weight: 800; }
+.page-head p { color: var(--muted); font-size: 13px; margin: 0; line-height: 1.5; }
+
+/* Buttons */
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 12.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.btn:active { transform: translateY(0); filter: brightness(0.98); }
+.primary { background: var(--blue); color: white; box-shadow: 0 6px 18px rgba(79, 70, 229, 0.3); }
+.primary:hover { background: var(--blue-hover); }
+.outline { background: var(--panel); border: 1px solid var(--line); color: var(--ink); }
+.outline:hover { background: var(--lav); }
+.soft { background: var(--lav); color: var(--blue); }
+.soft:hover { filter: brightness(0.95); }
+.btn-sm { padding: 6px 12px; font-size: 11.5px; border-radius: 8px; }
+
+/* Cards & Metrics */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 18px;
+}
+.metric {
+  background: var(--panel);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.metric:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.metric-head { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 12px; font-weight: 600; }
+.metric-icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--lav);
+  color: var(--blue);
+  font-size: 15px;
+}
+.metric-value { font-size: clamp(20px, 2.2vw, 28px); letter-spacing: -0.6px; font-weight: 800; margin: 12px 0 6px; color: var(--ink); overflow-wrap: anywhere; }
+.metric-foot { font-size: 11px; color: var(--muted); font-weight: 500; }
+.up { color: var(--mint) !important; }
+.down { color: var(--red) !important; }
+
+/* Smart Insights Grid */
+.insights-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.insight-card {
+  background: var(--panel);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.insight-card:hover { transform: translateY(-2px); }
+.insight-emoji {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.insight-body { min-width: 0; }
+.insight-label { font-size: 10.5px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.insight-value { font-size: 16.5px; font-weight: 800; margin: 2px 0; color: var(--ink); }
+.insight-sub { font-size: 11px; color: var(--muted); }
+
+/* Panels & Grids */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr);
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.panel h2 { font-size: 15.5px; font-weight: 700; margin: 0; color: var(--ink); }
+.sub { color: var(--muted); font-size: 11px; margin-top: 4px; }
+.select {
+  border: 1px solid var(--line);
+  background: var(--input-bg);
+  padding: 8px 11px;
+  border-radius: 9px;
+  color: var(--ink);
+  font-size: 11.5px;
+  outline: none;
+}
+
+/* Cash Flow Canvas & Legend */
+.chart-wrap { height: 220px; position: relative; }
+.chart-wrap canvas { width: 100%; height: 100%; display: block; }
+.legend { display: flex; gap: 16px; font-size: 11px; color: var(--muted); margin-top: 10px; font-weight: 500; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+
+/* Donut Chart Container */
+.donut-container {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  margin-top: 6px;
+}
+.donut-wrap { height: 180px; position: relative; }
+.donut-legend { display: flex; flex-direction: column; gap: 8px; font-size: 11px; max-height: 180px; overflow-y: auto; padding-right: 4px; }
+.donut-item { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.donut-item-left { display: flex; align-items: center; gap: 6px; }
+.donut-item-color { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.donut-item-amount { font-weight: 700; color: var(--ink); }
+
+.quick-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.mini-stat { background: var(--tag-bg); border-radius: 12px; padding: 12px 14px; }
+.mini-stat span { display: block; color: var(--muted); font-size: 10.5px; font-weight: 500; }
+.mini-stat strong { display: block; margin-top: 5px; font-size: 16px; color: var(--ink); font-weight: 800; }
+
+/* Tables */
+.table-panel { padding: 0; overflow: hidden; }
+.table-panel .panel-head { padding: 20px 22px 14px; margin-bottom: 0; }
+.table-tools { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.search {
+  border: 1px solid var(--line);
+  background: var(--input-bg);
+  color: var(--ink);
+  border-radius: 9px;
+  padding: 8px 12px;
+  min-width: 170px;
+  font-size: 12px;
+  outline: none;
+}
+.search:focus, input:focus, select:focus, textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+  outline: none;
+}
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 720px; }
+th, td { padding: 13px 20px; text-align: left; border-bottom: 1px solid var(--line); font-size: 11.5px; }
+th { color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; font-size: 9.5px; font-weight: 700; background: var(--tag-bg); }
+td { color: var(--ink); }
+.tx-name { font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 10px; }
+.tx-icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--lav);
+  color: var(--blue);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.tx-note { font-size: 10px; color: var(--muted); font-weight: 400; display: block; margin-top: 2px; }
+.tag {
+  display: inline-block;
+  background: var(--tag-bg);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.type { font-weight: 700; }
+.income { color: var(--mint); }
+.expense { color: var(--red); }
+.actions { display: flex; gap: 6px; }
+.small-btn {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 7px;
+  padding: 5px 9px;
+  font-size: 10.5px;
+  font-weight: 600;
+  transition: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.small-btn:hover { background: var(--lav); color: var(--blue); }
+.empty { padding: 36px; text-align: center; color: var(--muted); font-size: 12.5px; }
+.table-foot { padding: 12px 20px; color: var(--muted); font-size: 11px; background: var(--panel); border-top: 1px solid var(--line); }
+
+/* Pages */
+.page { display: none; }
+.page.active { display: block; }
+
+/* Budgets Upgrade */
+.budget-overview-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.budget-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.budget-card {
+  background: var(--panel);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.budget-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.budget-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.budget-cat-info { display: flex; align-items: center; gap: 10px; }
+.budget-cat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--lav);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+}
+.budget-card h3 { font-size: 15px; margin: 0; color: var(--ink); font-weight: 700; }
+.budget-status-pill {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+.budget-spent-row { margin: 10px 0 6px; }
+.budget-amount { font-size: 22px; font-weight: 800; color: var(--ink); }
+.budget-sub { font-size: 11px; color: var(--muted); margin: 2px 0 10px; }
+.track { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; margin-top: 8px; }
+.fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #4f46e5, #6366f1); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.budget-actions { display: flex; gap: 8px; margin-top: 18px; }
+.budget-actions button { flex: 1; }
+
+/* Goals Grid */
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.goal-card {
+  background: var(--panel);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.goal-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.goal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.goal-emoji {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--lav);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+}
+.goal-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--tag-bg);
+  color: var(--muted);
+}
+.goal-badge.complete { background: var(--mint-bg); color: var(--mint); }
+.goal-name { font-size: 16px; font-weight: 700; margin: 0 0 4px; color: var(--ink); }
+.goal-target { font-size: 11.5px; color: var(--muted); margin-bottom: 14px; }
+.goal-saved { font-size: 24px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+.goal-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 8px; }
+.goal-actions { display: flex; gap: 8px; margin-top: 18px; }
+.goal-actions button { flex: 1; }
+
+/* Profile Section Styles */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 20px;
+}
+.profile-card {
+  background: var(--panel);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+.profile-avatar-large {
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  font-size: 32px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+}
+.profile-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--lav);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+.profile-name { font-size: 22px; font-weight: 800; margin: 0 0 4px; color: var(--ink); }
+.profile-email { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+
+.pref-group { display: grid; gap: 16px; margin-top: 18px; }
+.pref-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--tag-bg);
+  border-radius: 12px;
+  gap: 12px;
+}
+.pref-label { font-size: 12px; font-weight: 600; color: var(--ink); }
+.pref-sub { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+
+.notice {
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  font-size: 11.5px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+[data-theme="dark"] .notice {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.25);
+  color: #fde68a;
+}
+.notice details { margin-top: 6px; }
+.notice pre { background: rgba(0, 0, 0, 0.1); padding: 8px; border-radius: 6px; overflow-x: auto; font-size: 10.5px; margin: 6px 0 0; }
+
+/* Modals */
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 12, 24, 0.72);
+  z-index: 99;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  backdrop-filter: blur(6px);
+}
+.modal-bg.open { display: flex; }
+.modal {
+  background: var(--panel);
+  border-radius: 20px;
+  width: min(520px, 100%);
+  padding: 26px;
+  box-shadow: var(--shadow-lg);
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid var(--card-border);
+}
+.modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.modal-head h2 { font-size: 18px; font-weight: 700; margin: 0; color: var(--ink); }
+.close {
+  border: 0;
+  background: var(--lav);
+  border-radius: 9px;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  transition: 0.15s ease;
+}
+.close:hover { color: var(--ink); transform: scale(1.05); }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-size: 11.5px; font-weight: 700; color: var(--muted); }
+.field input, .field select, .field textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--input-bg);
+  border-radius: 9px;
+  padding: 10px 12px;
+  color: var(--ink);
+  min-width: 0;
+}
+.form-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 22px; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0f172a;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  display: none;
+  z-index: 999;
+  max-width: calc(100% - 32px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.toast.show { display: block; animation: toastSpring 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+@keyframes toastSpring { from { opacity: 0; transform: translate(-50%, 15px) scale(0.95); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
+
+.footer { text-align: center; padding: 25px 0 0; color: var(--muted); font-size: 10.5px; letter-spacing: 0.5px; }
+
+/* Responsive */
+@media(max-width: 1100px) {
+  .shell { grid-template-columns: 78px minmax(0, 1fr); }
+  .sidebar { padding: 20px 10px; }
+  .brand { padding: 0; justify-content: center; }
+  .brand-text, .nav-label, .nav button .nav-text, .side-bottom { display: none; }
+  .nav button { justify-content: center; padding: 12px 6px; }
+  .nav .nav-icon { font-size: 18px; }
+  .cards, .insights-strip, .budget-overview-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid { grid-template-columns: 1fr; }
+  .budget-grid, .goals-grid, .profile-grid { grid-template-columns: 1fr; }
+}
+
+@media(max-width: 680px) {
+  .shell { display: block; }
+  .sidebar { position: sticky; top: 0; z-index: 20; flex-direction: row; align-items: center; justify-content: space-between; padding: 10px 14px; }
+  .brand { justify-content: flex-start; }
+  .brand-icon { width: 34px; height: 34px; font-size: 17px; }
+  .brand-name { font-size: 17px; }
+  .brand-text { display: block; }
+  .brand-sub, .nav-label, .side-bottom { display: none; }
+  .nav { display: flex; gap: 4px; }
+  .nav button { padding: 8px 10px; border-radius: 8px; }
+  .nav .nav-text { display: none; }
+  .nav .nav-icon { font-size: 16px; width: auto; }
+  .topbar { height: 60px; padding: 0 16px; position: static; }
+  .demo-pill { display: none; }
+  .cards, .insights-strip, .budget-overview-strip, .budget-grid, .goals-grid, .profile-grid { grid-template-columns: 1fr; }
+  .donut-container { grid-template-columns: 1fr; }
+  .donut-wrap { height: 160px; }
+  .table-tools { width: 100%; }
+  .search { flex: 1; width: 100%; }
+  .form-grid { grid-template-columns: 1fr; }
+  .field.full { grid-column: auto; }
+}
 </style>
 </head>
 <body>
-  
-<div id="authScreen" style="display:none; min-height:100vh; align-items:center; justify-content:center; padding:24px; background:#f5f7fb;">
 
-<div style="background:white; color:#111; padding:32px; border-radius:16px; width:100%; max-width:400px; box-shadow:0 8px 30px #00000010; position:relative; z-index:1;">
-    <h1 style="margin-top:0;">Finova</h1>
+<!-- Supabase Auth Screen -->
+<div id="authScreen" style="display:none; min-height:100vh; align-items:center; justify-content:center; padding:24px; background:var(--bg);">
+  <div style="background:var(--panel); color:var(--ink); padding:36px; border-radius:22px; width:100%; max-width:420px; box-shadow:var(--shadow-lg); border:1px solid var(--card-border); position:relative; z-index:1;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px;">
+      <div class="brand-icon">F</div>
+      <div>
+        <h2 style="margin:0; font-size:22px; font-weight:800;">Finova</h2>
+        <div style="font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.8px;">Financial Management Suite</div>
+      </div>
+    </div>
     
-
-    <div style="display:flex; gap:10px; margin:20px 0;">
-      <button type="button" onclick="showAuthMode('login')">Login</button>
-      <button type="button" onclick="showAuthMode('signup')">Sign Up</button>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:20px;">
+      <button class="btn outline" type="button" id="tabLogin" onclick="showAuthMode('login')" style="background:var(--lav); font-weight:700;">Login</button>
+      <button class="btn outline" type="button" id="tabSignup" onclick="showAuthMode('signup')">Sign Up</button>
     </div>
 
     <form id="authForm">
-      <label for="authEmail">Email</label>
-      <input id="authEmail" type="email" required
-        placeholder="you@example.com"
-        style="display:block;width:100%;box-sizing:border-box;padding:12px;margin:8px 0 16px;">
+      <div class="field" style="margin-bottom:14px;">
+        <label for="authEmail">Email Address</label>
+        <input id="authEmail" type="email" required placeholder="you@example.com">
+      </div>
 
-      <label for="authPassword">Password</label>
-      <input id="authPassword" type="password" required minlength="6"
-        placeholder="At least 6 characters"
-        style="display:block;width:100%;box-sizing:border-box;padding:12px;margin:8px 0 16px;">
+      <div class="field" style="margin-bottom:20px;">
+        <label for="authPassword">Password</label>
+        <input id="authPassword" type="password" required minlength="6" placeholder="At least 6 characters">
+      </div>
 
-      <button id="authSubmit" type="submit">Login</button>
+      <button id="authSubmit" class="btn primary" type="submit" style="width:100%; padding:12px;">Login</button>
     </form>
 
-    <p id="authMessage" role="status"></p>
+    <p id="authMessage" role="status" style="margin:16px 0 0; font-size:12px; text-align:center; color:var(--muted);"></p>
   </div>
 </div>
 
+<!-- Main App Shell -->
 <div class="shell">
   <aside class="sidebar">
-    <div class="brand"><div class="brand-icon">F</div><div class="brand-text"><div class="brand-name">finova</div><div class="brand-sub">Financial flow manager</div></div></div>
-    <div><div class="nav-label">WORKSPACE</div><nav class="nav" aria-label="Main navigation">
-      <button class="active" data-page="overview"><span class="nav-icon">◫</span><span class="nav-text">Overview</span></button>
-      <button data-page="transactions"><span class="nav-icon">⇄</span><span class="nav-text">Transactions</span></button>
-      <button data-page="budgets"><span class="nav-icon">◉</span><span class="nav-text">Budgets</span></button>
-    </nav></div>
-    <div class="side-bottom"><strong>✦ Build better money habits</strong><p>Track spending, understand cash flow, and make each rupee count.</p></div>
-  
-<div style="padding: 16px;">
-  <button
-    id="logoutButton"
-    class="btn outline"
-    type="button"
-    style="width: 100%;">
-    Log out
-  </button>
-</div>
-</aside>
+    <div class="brand">
+      <div class="brand-icon">F</div>
+      <div class="brand-text">
+        <div class="brand-name">finova</div>
+        <div class="brand-sub">Financial flow manager</div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="nav" aria-label="Main navigation">
+        <button class="active" data-page="overview"><span class="nav-icon">◫</span><span class="nav-text">Overview</span></button>
+        <button data-page="transactions"><span class="nav-icon">⇄</span><span class="nav-text">Transactions</span></button>
+        <button data-page="budgets"><span class="nav-icon">◉</span><span class="nav-text">Budgets</span></button>
+        <button data-page="goals"><span class="nav-icon">🎯</span><span class="nav-text">Goals</span></button>
+        <button data-page="profile"><span class="nav-icon">👤</span><span class="nav-text">Profile</span></button>
+      </nav>
+    </div>
+
+    <div class="side-bottom">
+      <strong>✦ Build better money habits</strong>
+      <p>Analyze spending patterns, stay on budget, and achieve your financial milestones.</p>
+    </div>
+
+    <div style="padding: 4px;">
+      <button id="logoutButton" class="btn outline" type="button" style="width: 100%; font-size: 11.5px;">
+        🚪 Log out
+      </button>
+    </div>
+  </aside>
 
   <div class="main">
-    <header class="topbar"><div class="crumb">Workspace &nbsp;/&nbsp; <strong id="crumbLabel">Overview</strong></div><div class="top-actions"><span class="demo-pill">CLOUD SYNC ACTIVE</span><div class="avatar">FF</div></div></header>
+    <header class="topbar">
+      <div class="crumb">Workspace &nbsp;/&nbsp; <strong id="crumbLabel">Overview</strong></div>
+      <div class="top-actions">
+        <button id="themeToggle" class="theme-btn" type="button" title="Toggle Dark/Light Mode">🌙</button>
+        <span class="demo-pill">CLOUD SYNC ACTIVE</span>
+        <div class="avatar" id="userAvatar" title="View Profile">FF</div>
+      </div>
+    </header>
+
     <main class="content">
+      <!-- Overview Page -->
       <section class="page active" id="page-overview">
-        <div class="page-head"><div><div class="kicker">YOUR FINANCIAL PICTURE</div><h1>Good to see you 👋</h1><p>Every transaction tells a story. Here's where your money stands today.</p></div><button class="btn primary" id="quickAdd">＋ Add transaction</button></div>
-        <div class="notice"><strong>Prototype mode:</strong> Transactions update your dashboard instantly and sync with your Supabase account. Your financial data is securely associated with your signed-in account.</div>
+        <div class="page-head">
+          <div>
+            <div class="kicker">FINANCIAL INTELLIGENCE</div>
+            <h1>Financial Overview 👋</h1>
+            <p>Real-time analytics, cash flow trajectories, and intelligent spending diagnostics.</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn primary" id="quickAdd">＋ Add transaction</button>
+          </div>
+        </div>
+
+        <div class="notice">
+          <strong>Finova Intelligence Active:</strong> Transactions recalculate your dashboard metrics in real-time and synchronize securely with your Supabase cloud repository.
+        </div>
+
+        <!-- 4 Top Metrics -->
         <div class="cards">
-          <article class="metric"><div class="metric-head">Total income <span class="metric-icon">↗</span></div><div class="metric-value" id="incomeValue">₹0</div><div class="metric-foot up">↑ Money received</div></article>
-          <article class="metric"><div class="metric-head">Total expenses <span class="metric-icon">↘</span></div><div class="metric-value" id="expenseValue">₹0</div><div class="metric-foot down">↓ Money spent</div></article>
-          <article class="metric"><div class="metric-head">Net balance <span class="metric-icon">◈</span></div><div class="metric-value" id="balanceValue">₹0</div><div class="metric-foot" id="balanceNote">Income minus expenses</div></article>
-          <article class="metric"><div class="metric-head">Transactions <span class="metric-icon">▤</span></div><div class="metric-value" id="countValue">0</div><div class="metric-foot">All recorded entries</div></article>
+          <article class="metric">
+            <div class="metric-head">Total Income <span class="metric-icon">↗</span></div>
+            <div class="metric-value" id="incomeValue">₹0</div>
+            <div class="metric-foot up">↑ Inflow received</div>
+          </article>
+          <article class="metric">
+            <div class="metric-head">Total Expenses <span class="metric-icon">↘</span></div>
+            <div class="metric-value" id="expenseValue">₹0</div>
+            <div class="metric-foot down">↓ Outflow spent</div>
+          </article>
+          <article class="metric">
+            <div class="metric-head">Net Balance <span class="metric-icon">◈</span></div>
+            <div class="metric-value" id="balanceValue">₹0</div>
+            <div class="metric-foot" id="balanceNote">Income minus expenses</div>
+          </article>
+          <article class="metric">
+            <div class="metric-head">Total Records <span class="metric-icon">▤</span></div>
+            <div class="metric-value" id="countValue">0</div>
+            <div class="metric-foot">Recorded operations</div>
+          </article>
         </div>
+
+        <!-- 4 Smart Spending Insight Cards -->
+        <div class="insights-strip">
+          <div class="insight-card">
+            <div class="insight-emoji" style="background:var(--mint-bg); color:var(--mint);">💡</div>
+            <div class="insight-body">
+              <div class="insight-label">Savings Rate</div>
+              <div class="insight-value" id="insightSavingsRate">0%</div>
+              <div class="insight-sub" id="insightSavingsNote">Target: &gt; 20%</div>
+            </div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-emoji" style="background:var(--amber-bg); color:var(--amber);">🔥</div>
+            <div class="insight-body">
+              <div class="insight-label">Daily Burn Rate</div>
+              <div class="insight-value" id="insightDailyBurn">₹0/day</div>
+              <div class="insight-sub">This calendar month</div>
+            </div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-emoji" style="background:var(--purple-bg); color:var(--purple);">📊</div>
+            <div class="insight-body">
+              <div class="insight-label">MoM Expense Trend</div>
+              <div class="insight-value" id="insightMomTrend">0%</div>
+              <div class="insight-sub" id="insightMomNote">vs prior month</div>
+            </div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-emoji" style="background:var(--red-bg); color:var(--red);">🎯</div>
+            <div class="insight-body">
+              <div class="insight-label">Budget Adherence</div>
+              <div class="insight-value" id="insightBudgetAlert">All Clear</div>
+              <div class="insight-sub" id="insightBudgetNote">Monthly thresholds</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
         <div class="grid">
-          <article class="panel"><div class="panel-head"><div><h2>Cash flow</h2><div class="sub">Income compared with expenses</div></div><select class="select" id="rangeSelect"><option value="6">Last 6 months</option><option value="4">Last 4 months</option><option value="3">Last 3 months</option></select></div><div class="chart-wrap"><canvas id="cashflow" aria-label="Cash flow chart"></canvas></div><div class="legend"><span><i class="dot" style="background:#5478f6"></i>Income</span><span><i class="dot" style="background:#1eb98a"></i>Expenses</span></div></article>
-          <article class="panel"><div class="panel-head"><div><h2>Spending breakdown</h2><div class="sub">Where your expenses go</div></div></div><div class="category-list" id="categoryList"></div><div class="quick-stats"><div class="mini-stat"><span>Average expense</span><strong id="averageExpense">₹0</strong></div><div class="mini-stat"><span>Top category</span><strong id="topCategory">—</strong></div></div></article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h2>Cash Flow Trajectory</h2>
+                <div class="sub">Income vs Outflow breakdown</div>
+              </div>
+              <select class="select" id="rangeSelect">
+                <option value="6">Last 6 months</option>
+                <option value="4">Last 4 months</option>
+                <option value="3">Last 3 months</option>
+              </select>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="cashflow" aria-label="Cash flow chart"></canvas>
+            </div>
+            <div class="legend">
+              <span><i class="dot" style="background:#4f46e5"></i>Income</span>
+              <span><i class="dot" style="background:#10b981"></i>Expenses</span>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h2>Expense Breakdown</h2>
+                <div class="sub">Category distribution analysis</div>
+              </div>
+            </div>
+            <div class="donut-container">
+              <div class="donut-wrap">
+                <canvas id="categoryDonutChart"></canvas>
+              </div>
+              <div class="donut-legend" id="donutLegend"></div>
+            </div>
+            <div class="quick-stats">
+              <div class="mini-stat">
+                <span>Average Expense</span>
+                <strong id="averageExpense">₹0</strong>
+              </div>
+              <div class="mini-stat">
+                <span>Dominant Category</span>
+                <strong id="topCategory">—</strong>
+              </div>
+            </div>
+          </article>
         </div>
-        <article class="panel table-panel"><div class="panel-head"><div><h2>Recent transactions</h2><div class="sub">Your latest financial activity</div></div><button class="btn soft" id="viewAll">View all →</button></div><div class="table-wrap"><table><thead><tr><th>Transaction</th><th>Category</th><th>Date</th><th>Type</th><th>Amount</th><th></th></tr></thead><tbody id="recentRows"></tbody></table><div class="empty" id="recentEmpty" hidden>No transactions yet — add your first one.</div></div><div class="table-foot" id="recentFoot"></div></article>
+
+        <!-- Recent Transactions -->
+        <article class="panel table-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Recent Activity</h2>
+              <div class="sub">Your latest recorded financial events</div>
+            </div>
+            <button class="btn soft" id="viewAll">View all transactions →</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Transaction</th>
+                  <th>Category</th>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="recentRows"></tbody>
+            </table>
+            <div class="empty" id="recentEmpty" hidden>No transactions yet — click "+ Add transaction" to begin.</div>
+          </div>
+          <div class="table-foot" id="recentFoot"></div>
+        </article>
       </section>
 
+      <!-- Transactions Page -->
       <section class="page" id="page-transactions">
-        <div class="page-head"><div><div class="kicker">ALL ACTIVITY</div><h1>Transactions</h1><p>Add, edit, search and remove financial records. Dashboard figures recalculate immediately.</p></div><button class="btn primary" id="transactionAdd">＋ Add transaction</button>
-<button class="btn outline" type="button"
-  onclick="migrateDemoTransactionsToCloud().catch(e => {
-    console.error(e);
-    alert('Migration failed: ' + e.message);
-  })">
-  Import Sample Data
-</button>
-         <article class="panel table-panel"><div class="panel-head"><div><h2>Transaction history</h2><div class="sub" id="historySub">All records</div></div><div class="table-tools"><input class="search" id="searchInput" type="search" placeholder="Search transactions…" aria-label="Search transactions"><select class="select" id="filterType" aria-label="Filter by type"><option value="all">All types</option><option value="income">Income</option><option value="expense">Expenses</option></select></div></div><div class="table-wrap"><table><thead><tr><th>Transaction</th><th>Category</th><th>Date</th><th>Type</th><th>Amount</th><th>Actions</th></tr></thead><tbody id="allRows"></tbody></table><div class="empty" id="allEmpty" hidden>No matching transactions found.</div></div><div class="table-foot" id="allFoot"></div></article>
+        <div class="page-head">
+          <div>
+            <div class="kicker">LEDGER & HISTORY</div>
+            <h1>Transactions</h1>
+            <p>Filter, edit, search, and export your entire financial history.</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn outline" id="exportCsvBtn">📥 Export CSV</button>
+            <button class="btn outline" type="button" onclick="migrateDemoTransactionsToCloud().catch(e => { console.error(e); alert('Migration failed: ' + e.message); })">
+              Import Sample Data
+            </button>
+            <button class="btn primary" id="transactionAdd">＋ Add transaction</button>
+          </div>
+        </div>
+
+        <article class="panel table-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Transaction Records</h2>
+              <div class="sub" id="historySub">All active records</div>
+            </div>
+            <div class="table-tools">
+              <input class="search" id="searchInput" type="search" placeholder="Search description, note..." aria-label="Search transactions">
+              <select class="select" id="filterType" aria-label="Filter by type">
+                <option value="all">All Types</option>
+                <option value="income">Income Only</option>
+                <option value="expense">Expense Only</option>
+              </select>
+              <select class="select" id="filterCategory" aria-label="Filter by category">
+                <option value="all">All Categories</option>
+                <option>Food</option>
+                <option>Transport</option>
+                <option>Education</option>
+                <option>Shopping</option>
+                <option>Bills</option>
+                <option>Health</option>
+                <option>Salary</option>
+                <option>Freelance</option>
+                <option>Entertainment</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Transaction</th>
+                  <th>Category</th>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="allRows"></tbody>
+            </table>
+            <div class="empty" id="allEmpty" hidden>No matching transactions found.</div>
+          </div>
+          <div class="table-foot" id="allFoot"></div>
+        </article>
       </section>
 
+      <!-- Budgets Page (Upgraded & Fully Working) -->
       <section class="page" id="page-budgets">
-        <div class="page-head"><div><div class="kicker">SPENDING PLAN</div><h1>Budgets</h1><p>Set monthly category limits and compare them with expenses in your current month.</p></div></div>
-        <div class="notice">Budget usage is calculated from expense transactions dated in the current calendar month. Budgets are saved in this browser demo, not in the cloud yet.</div>
-        <article class="panel"><div class="panel-head"><div><h2>Monthly category budgets</h2><div class="sub">Adjust limits as your needs change</div></div></div><div class="budget-grid" id="budgetGrid"></div><form class="budget-form" id="budgetForm"><input id="budgetCategory" placeholder="New category name" maxlength="30" required><input id="budgetAmount" type="number" min="1" max="100000000" step="1" placeholder="Monthly limit (₹)" required><button class="btn primary" type="submit">＋ Add budget</button></form></article>
+        <div class="page-head">
+          <div>
+            <div class="kicker">CAPITAL ALLOCATION</div>
+            <h1>Monthly Budgets</h1>
+            <p>Set spending ceilings per category and monitor consumption with live pacing alerts.</p>
+          </div>
+          <div class="page-actions">
+            <select class="select" id="budgetMonthFilter" title="Select Budget Period">
+              <option value="current">Current Month</option>
+              <option value="last30">Rolling 30 Days</option>
+              <option value="all">All-Time Average</option>
+            </select>
+            <button class="btn primary" id="openAddBudgetModalBtn">＋ New Category Budget</button>
+          </div>
+        </div>
+
+        <!-- Budget High-Level Overview Strip -->
+        <div class="budget-overview-strip">
+          <div class="metric">
+            <div class="metric-head">Total Budget Allocated <span class="metric-icon">◉</span></div>
+            <div class="metric-value" id="budgetTotalCap">₹0</div>
+            <div class="metric-foot">Combined monthly caps</div>
+          </div>
+          <div class="metric">
+            <div class="metric-head">Current Spending <span class="metric-icon">↘</span></div>
+            <div class="metric-value" id="budgetTotalSpent">₹0</div>
+            <div class="metric-foot" id="budgetSpentFoot">Tracked categories</div>
+          </div>
+          <div class="metric">
+            <div class="metric-head">Remaining Buffer <span class="metric-icon">◈</span></div>
+            <div class="metric-value" id="budgetTotalRemain">₹0</div>
+            <div class="metric-foot" id="budgetRemainFoot">Safe spending headroom</div>
+          </div>
+          <div class="metric">
+            <div class="metric-head">Budget Health <span class="metric-icon">📊</span></div>
+            <div class="metric-value" id="budgetHealthScore">100%</div>
+            <div class="metric-foot" id="budgetHealthFoot">Adherence index</div>
+          </div>
+        </div>
+
+        <div class="notice">
+          <strong>Cloud Synchronized:</strong> Category spending is dynamically calculated against your transaction ledger and synced with your Supabase database.
+        </div>
+
+        <div class="budget-grid" id="budgetGrid">
+          <!-- Dynamically populated -->
+        </div>
       </section>
-      <div class="footer">FINOVA · FINANCIAL FLOW MANAGER · FFM PROJECT</div>
+
+      <!-- Goals Page -->
+      <section class="page" id="page-goals">
+        <div class="page-head">
+          <div>
+            <div class="kicker">WEALTH BUILDING</div>
+            <h1>Financial Goals</h1>
+            <p>Track targets for savings, investments, down payments, and milestone funds.</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn primary" id="openGoalModalBtn">＋ Create Goal</button>
+          </div>
+        </div>
+
+        <div class="notice">
+          <strong>Cloud Sync & Local Backup:</strong> Goals persist automatically in local storage and synchronize with your Supabase <code>goals</code> table.
+          <details>
+            <summary style="cursor:pointer; font-weight:700; margin-top:4px;">View Supabase SQL schema for Goals (Optional)</summary>
+            <pre>create table if not exists goals (
+  id uuid default gen_random_uuid() primary key,
+  user_id uuid references auth.users not null,
+  name text not null,
+  target_amount numeric not null,
+  saved_amount numeric default 0,
+  deadline text,
+  emoji text,
+  created_at timestamptz default now()
+);</pre>
+          </details>
+        </div>
+
+        <div class="goals-grid" id="goalsGrid">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- Profile Page (Brand New Section) -->
+      <section class="page" id="page-profile">
+        <div class="page-head">
+          <div>
+            <div class="kicker">ACCOUNT & PREFERENCES</div>
+            <h1>User Profile & Settings</h1>
+            <p>Customize your identity, configure financial preferences, and manage cloud synchronization.</p>
+          </div>
+        </div>
+
+        <div class="profile-grid">
+          <!-- Identity Card -->
+          <div class="profile-card">
+            <div class="profile-avatar-large" id="profileLargeAvatar">FF</div>
+            <div class="profile-badge">✦ Finova Pro Analyst</div>
+            <h2 class="profile-name" id="profileDisplayName">Sarthak Shahane</h2>
+            <div class="profile-email" id="profileEmailDisplay">user@finova.app</div>
+
+            <div style="border-top:1px solid var(--line); padding-top:16px; margin-top:8px;">
+              <div class="field" style="margin-bottom:12px;">
+                <label for="profileNameInput">Display Name</label>
+                <input id="profileNameInput" value="Sarthak Shahane" placeholder="Enter your full name">
+              </div>
+              <div class="field" style="margin-bottom:16px;">
+                <label for="profileAvatarEmoji">Avatar Icon / Emoji</label>
+                <select id="profileAvatarEmoji">
+                  <option value="FF">Initials (FF)</option>
+                  <option value="💎">💎 Diamond</option>
+                  <option value="🚀">🚀 Rocket</option>
+                  <option value="💼">💼 Professional</option>
+                  <option value="🦊">🦊 Fox</option>
+                  <option value="⚡">⚡ Bolt</option>
+                  <option value="🛡️">🛡️ Shield</option>
+                </select>
+              </div>
+              <button class="btn primary" id="saveProfileBtn" style="width:100%;">Save Profile Changes</button>
+            </div>
+          </div>
+
+          <!-- Preferences & System -->
+          <div style="display:grid; gap:20px;">
+            <!-- Financial Preferences -->
+            <div class="profile-card">
+              <h2 style="font-size:16px; margin:0 0 6px; font-weight:700;">Financial Configuration</h2>
+              <p class="sub" style="margin:0 0 16px;">Calibrate how Finova computes benchmarks and displays values</p>
+
+              <div class="pref-group">
+                <div class="pref-row">
+                  <div>
+                    <div class="pref-label">Display Currency</div>
+                    <div class="pref-sub">Affects symbols and formatting across all tabs</div>
+                  </div>
+                  <select class="select" id="prefCurrency">
+                    <option value="INR">₹ INR (Indian Rupee)</option>
+                    <option value="USD">$ USD (US Dollar)</option>
+                    <option value="EUR">€ EUR (Euro)</option>
+                    <option value="GBP">£ GBP (British Pound)</option>
+                    <option value="JPY">¥ JPY (Japanese Yen)</option>
+                  </select>
+                </div>
+
+                <div class="pref-row">
+                  <div>
+                    <div class="pref-label">Target Monthly Income</div>
+                    <div class="pref-sub">Baseline for wealth and cashflow projections</div>
+                  </div>
+                  <input type="number" id="prefTargetIncome" class="search" style="width:130px;" value="50000" step="1000">
+                </div>
+
+                <div class="pref-row">
+                  <div>
+                    <div class="pref-label">Monthly Savings Target</div>
+                    <div class="pref-sub">Desired savings percentage benchmark</div>
+                  </div>
+                  <select class="select" id="prefSavingsGoalRate">
+                    <option value="15">15% (Conservative)</option>
+                    <option value="20" selected>20% (Standard Benchmark)</option>
+                    <option value="30">30% (Aggressive)</option>
+                    <option value="40">40% (Financial Independence)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cloud Sync & Data Management -->
+            <div class="profile-card">
+              <h2 style="font-size:16px; margin:0 0 6px; font-weight:700;">Data & Backup Tools</h2>
+              <p class="sub" style="margin:0 0 16px;">Export your complete financial records or restore data</p>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn outline" id="backupJsonBtn">📦 Export JSON Backup</button>
+                <button class="btn outline" id="pingCloudBtn">⚡ Test Supabase Connection</button>
+                <button class="btn outline" id="resetSampleDataBtn" style="color:var(--red);">⚠️ Reload Sample Data</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">FINOVA · ADVANCED FINANCIAL ANALYSIS & WEALTH MANAGEMENT SYSTEM</div>
     </main>
   </div>
 </div>
 
-<div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal">
-  <div class="modal-head"><h2 id="modalTitle">Add transaction</h2><button class="close" id="closeModal" type="button" aria-label="Close">×</button></div>
-  <form id="transactionForm"><div class="form-grid">
-    <div class="field full"><label for="txDescription">Description</label><input id="txDescription" maxlength="80" placeholder="e.g. Grocery shopping" required></div>
-    <div class="field"><label for="txAmount">Amount (₹)</label><input id="txAmount" type="number" min="0.01" max="100000000" step="0.01" placeholder="0.00" required></div>
-    <div class="field"><label for="txType">Type</label><select id="txType"><option value="expense">Expense</option><option value="income">Income</option></select></div>
-    <div class="field"><label for="txCategory">Category</label><select id="txCategory"><option>Food</option><option>Transport</option><option>Education</option><option>Shopping</option><option>Bills</option><option>Health</option><option>Salary</option><option>Freelance</option><option>Entertainment</option><option>Other</option></select></div>
-    <div class="field"><label for="txDate">Date</label><input id="txDate" type="date" required></div>
-  </div><div class="form-actions"><button class="btn outline" id="cancelModal" type="button">Cancel</button><button class="btn primary" type="submit">Save transaction</button></div></form>
-</div></div>
+<!-- Modal: Add / Edit Transaction -->
+<div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modalTitle">Add transaction</h2>
+      <button class="close" id="closeModal" type="button" aria-label="Close">×</button>
+    </div>
+    <form id="transactionForm">
+      <div class="form-grid">
+        <div class="field full">
+          <label for="txDescription">Description</label>
+          <input id="txDescription" maxlength="80" placeholder="e.g. Grocery shopping, Client invoice" required>
+        </div>
+        <div class="field">
+          <label for="txAmount">Amount</label>
+          <input id="txAmount" type="number" min="0.01" max="100000000" step="0.01" placeholder="0.00" required>
+        </div>
+        <div class="field">
+          <label for="txType">Type</label>
+          <select id="txType">
+            <option value="expense">Expense</option>
+            <option value="income">Income</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="txCategory">Category</label>
+          <select id="txCategory">
+            <option>Food</option>
+            <option>Transport</option>
+            <option>Education</option>
+            <option>Shopping</option>
+            <option>Bills</option>
+            <option>Health</option>
+            <option>Salary</option>
+            <option>Freelance</option>
+            <option>Entertainment</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="txDate">Date</label>
+          <input id="txDate" type="date" required>
+        </div>
+        <div class="field full">
+          <label for="txNote">Notes / Tags (Optional)</label>
+          <input id="txNote" maxlength="120" placeholder="e.g. Paid via UPI, Tax deductible">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn outline" id="cancelModal" type="button">Cancel</button>
+        <button class="btn primary" type="submit" id="saveTxSubmit">Save transaction</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal: Add / Edit Budget (Brand New Dedicated Flow) -->
+<div class="modal-bg" id="budgetModalBg" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="budgetModalTitle">Set Category Budget</h2>
+      <button class="close" id="closeBudgetModal" type="button">×</button>
+    </div>
+    <form id="budgetModalForm">
+      <div class="form-grid">
+        <div class="field full">
+          <label for="modalBudgetCategory">Category</label>
+          <select id="modalBudgetCategory">
+            <option value="Food">☕ Food & Dining</option>
+            <option value="Transport">🚗 Transport & Commute</option>
+            <option value="Shopping">🛍️ Shopping & Retail</option>
+            <option value="Bills">⚡ Bills & Utilities</option>
+            <option value="Education">🎓 Education & Courses</option>
+            <option value="Health">💊 Healthcare & Wellness</option>
+            <option value="Entertainment">🎬 Entertainment & Leisure</option>
+            <option value="Other">📦 Other / General</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="modalBudgetAmount">Monthly Limit</label>
+          <input id="modalBudgetAmount" type="number" min="1" max="100000000" step="1" placeholder="e.g. 8000" required>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn outline" id="cancelBudgetModal" type="button">Cancel</button>
+        <button class="btn primary" type="submit" id="saveBudgetSubmit">Save Budget</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal: Create / Edit Goal -->
+<div class="modal-bg" id="goalModalBg" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="goalModalTitle">Create Financial Goal</h2>
+      <button class="close" id="closeGoalModal" type="button">×</button>
+    </div>
+    <form id="goalForm">
+      <div class="form-grid">
+        <div class="field full">
+          <label for="goalName">Goal Name</label>
+          <input id="goalName" maxlength="60" placeholder="e.g. Emergency Fund, New Laptop, Vacation" required>
+        </div>
+        <div class="field">
+          <label for="goalTarget">Target Amount</label>
+          <input id="goalTarget" type="number" min="1" max="1000000000" step="1" placeholder="50000" required>
+        </div>
+        <div class="field">
+          <label for="goalSaved">Currently Saved</label>
+          <input id="goalSaved" type="number" min="0" max="1000000000" step="1" placeholder="0" value="0">
+        </div>
+        <div class="field">
+          <label for="goalEmoji">Icon / Emoji</label>
+          <select id="goalEmoji">
+            <option value="🎯">🎯 Target</option>
+            <option value="🛡️">🛡️ Emergency Fund</option>
+            <option value="💻">💻 Tech / Gadgets</option>
+            <option value="🚗">🚗 Vehicle</option>
+            <option value="🏠">🏠 House / Real Estate</option>
+            <option value="✈️">✈️ Travel & Trip</option>
+            <option value="💍">💍 Wedding / Milestone</option>
+            <option value="🎓">🎓 Education</option>
+            <option value="📈">📈 Investments</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="goalDeadline">Target Deadline</label>
+          <input id="goalDeadline" type="date">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn outline" id="cancelGoalModal" type="button">Cancel</button>
+        <button class="btn primary" type="submit">Save Goal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal: Deposit to Goal -->
+<div class="modal-bg" id="depositModalBg" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="depositModalTitle">Add Funds to Goal</h2>
+      <button class="close" id="closeDepositModal" type="button">×</button>
+    </div>
+    <form id="depositForm">
+      <div class="field full" style="margin-bottom:14px;">
+        <label id="depositGoalLabel">Contribution Amount</label>
+        <input id="depositAmount" type="number" min="1" max="1000000000" step="1" placeholder="Enter amount" required>
+      </div>
+      <div class="form-actions">
+        <button class="btn outline" id="cancelDepositModal" type="button">Cancel</button>
+        <button class="btn primary" type="submit">Deposit Funds</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Supabase SDK & App Initialization -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   const SUPABASE_URL = "https://nzxxaftitkmfpykhmhhj.supabase.co";
   const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ZHXzyVSoiPt2Uf_GPP0-4Q_zeR0nvKe";
-
-  const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
-
-  console.log("Finova Supabase client initialized");
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 </script>
+
 <script>
+// --- Framer Motion Helper Engine ---
+const FFM = {
+  animate(target, keyframes, options = {}) {
+    if (window.Motion && typeof window.Motion.animate === "function") {
+      try {
+        return window.Motion.animate(target, keyframes, {
+          duration: 0.35,
+          easing: [0.16, 1, 0.3, 1],
+          ...options
+        });
+      } catch (e) {
+        console.warn("Motion animate fallback:", e);
+      }
+    }
+  },
+  pageEnter(el) {
+    if (!el) return;
+    this.animate(el, { opacity: [0, 1], y: [16, 0] }, { duration: 0.32 });
+  },
+  modalEnter(el) {
+    if (!el) return;
+    this.animate(el, { opacity: [0, 1], scale: [0.93, 1], y: [10, 0] }, { duration: 0.26 });
+  },
+  stagger(selector) {
+    const els = document.querySelectorAll(selector);
+    if (!els.length) return;
+    els.forEach((el, idx) => {
+      this.animate(el, { opacity: [0, 1], y: [12, 0] }, { delay: idx * 0.04, duration: 0.28 });
+    });
+  }
+};
+
+// --- State & Constants ---
 const STORAGE_KEY = "finova_ffm_transactions_v2";
-const BUDGET_KEY = "finova_ffm_budgets_v1";
+const BUDGET_KEY = "finova_ffm_budgets_v2";
+const GOALS_KEY = "finova_ffm_goals_v1";
+const THEME_KEY = "finova_theme";
+const PROFILE_KEY = "finova_profile_v1";
+
 const $ = id => document.getElementById(id);
-const money = new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:2});
-const isoDate = d => { const x = new Date(d.getTime()-d.getTimezoneOffset()*60000); return x.toISOString().slice(0,10); };
-const daysAgo = n => { const d=new Date(); d.setDate(d.getDate()-n); return isoDate(d); };
-const monthKey = d => d.slice(0,7);
+const isoDate = d => { const x = new Date(d.getTime() - d.getTimezoneOffset() * 60000); return x.toISOString().slice(0, 10); };
+const daysAgo = n => { const d = new Date(); d.setDate(d.getDate() - n); return isoDate(d); };
+const monthKey = d => d.slice(0, 7);
+
+// Profile & Preferences State
+let profile = loadJSON(PROFILE_KEY, {
+name: "Finova User",  avatar: "FF",
+  currency: "INR",
+  targetIncome: 50000,
+  savingsGoalRate: 20
+});
+
+// Dynamic Currency Formatter
+let moneyFormatter = new Intl.NumberFormat("en-IN", { style: "currency", currency: profile.currency || "INR", maximumFractionDigits: 2 });
+function updateCurrencyFormatter() {
+  const cur = profile.currency || "INR";
+  const localeMap = { INR: "en-IN", USD: "en-US", EUR: "de-DE", GBP: "en-GB", JPY: "ja-JP" };
+  moneyFormatter = new Intl.NumberFormat(localeMap[cur] || "en-US", { style: "currency", currency: cur, maximumFractionDigits: cur === "JPY" ? 0 : 2 });
+}
+updateCurrencyFormatter();
+
+function fmt(n) { return moneyFormatter.format(Number(n) || 0); }
+function niceDate(s) {
+  if (!s) return "—";
+  const [y, m, d] = s.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" });
+}
+
+function toast(message) {
+  const el = $("toast");
+  el.textContent = message;
+  el.classList.add("show");
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(() => el.classList.remove("show"), 2800);
+}
+
 const demoData = [
-{id:"seed-1",description:"Monthly allowance",amount:12000,type:"income",category:"Other",date:daysAgo(25)},
-{id:"seed-2",description:"Course materials",amount:1450,type:"expense",category:"Education",date:daysAgo(23)},
-{id:"seed-3",description:"Freelance design",amount:4500,type:"income",category:"Freelance",date:daysAgo(17)},
-{id:"seed-4",description:"Groceries",amount:980,type:"expense",category:"Food",date:daysAgo(13)},
-{id:"seed-5",description:"Bus and auto",amount:620,type:"expense",category:"Transport",date:daysAgo(9)},
-{id:"seed-6",description:"Mobile recharge",amount:299,type:"expense",category:"Bills",date:daysAgo(5)},
-{id:"seed-7",description:"Dinner with friends",amount:540,type:"expense",category:"Food",date:daysAgo(2)}
+  { id: "seed-1", description: "Monthly allowance", amount: 12000, type: "income", category: "Other", date: daysAgo(5), note: "Direct bank transfer" },
+  { id: "seed-2", description: "Course materials", amount: 1450, type: "expense", category: "Education", date: daysAgo(7), note: "Online textbook" },
+  { id: "seed-3", description: "Freelance web design", amount: 7500, type: "income", category: "Freelance", date: daysAgo(10), note: "Client gig" },
+  { id: "seed-4", description: "Groceries & Supplies", amount: 1680, type: "expense", category: "Food", date: daysAgo(3), note: "Weekly grocery mart" },
+  { id: "seed-5", description: "Metro pass & Uber", amount: 740, type: "expense", category: "Transport", date: daysAgo(2), note: "Commute card recharge" },
+  { id: "seed-6", description: "Internet & Phone Bill", amount: 699, type: "expense", category: "Bills", date: daysAgo(8), note: "Broadband recharge" },
+  { id: "seed-7", description: "Weekend dinner with friends", amount: 890, type: "expense", category: "Food", date: daysAgo(1), note: "Cafe bill" }
 ];
 
-async function migrateDemoTransactionsToCloud() {
-  const { data: { user }, error: authError } =
-    await supabaseClient.auth.getUser();
+const demoGoals = [
+];
 
-  if (authError) throw authError;
-  if (!user) {
+function loadJSON(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw === null ? fallback : JSON.parse(raw);
+  } catch(e) {
+    return fallback;
+  }
+}
+function saveJSON(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch(e) {
+    toast("Storage notice: browser storage unavailable.");
+  }
+}
+
+let transactions = loadJSON(STORAGE_KEY, null);
+if (!Array.isArray(transactions) || transactions.length === 0) {
+  transactions = [];
+  
+}
+
+let budgets = loadJSON(BUDGET_KEY, {
+  "Food": 6000,
+  "Transport": 2500,
+  "Bills": 3000,
+  "Education": 4000,
+  "Shopping": 5000
+});
+
+let goals = loadJSON(GOALS_KEY, demoGoals);
+
+let editingId = null;
+let editingBudgetCategory = null;
+let activeDepositGoalId = null;
+let donutChartInstance = null;
+
+function totals(list = transactions) {
+  return list.reduce((a, t) => {
+    a[t.type === "income" ? "income" : "expense"] += Number(t.amount) || 0;
+    return a;
+  }, { income: 0, expense: 0 });
+}
+
+function iconFor(t) {
+  if (t.type === "income") return "↗";
+  return ({ Food: "☕", Transport: "🚗", Education: "🎓", Shopping: "🛍️", Bills: "⚡", Health: "💊", Entertainment: "🎬", Freelance: "💻", Salary: "💰" })[t.category] || "↘";
+}
+
+// --- Theme Management ---
+function initTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+    $("themeToggle").textContent = "☀️";
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+    $("themeToggle").textContent = "🌙";
+  }
+}
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  if (isDark) {
+    document.documentElement.removeAttribute("data-theme");
+    localStorage.setItem(THEME_KEY, "light");
+    $("themeToggle").textContent = "🌙";
+  } else {
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem(THEME_KEY, "dark");
+    $("themeToggle").textContent = "☀️";
+  }
+  requestAnimationFrame(drawCashFlowChart);
+  renderCategoryDonut();
+}
+$("themeToggle").addEventListener("click", toggleTheme);
+
+// --- Navigation & Motion Transitions ---
+function switchPage(name) {
+  document.querySelectorAll(".page").forEach(p => {
+    const isActive = p.id === "page-" + name;
+    p.classList.toggle("active", isActive);
+    if (isActive) FFM.pageEnter(p);
+  });
+
+  document.querySelectorAll(".nav button").forEach(b => {
+    b.classList.toggle("active", b.dataset.page === name);
+  });
+
+  const titles = { overview: "Overview", transactions: "Transactions", budgets: "Budgets", goals: "Financial Goals", profile: "User Profile" };
+  $("crumbLabel").textContent = titles[name] || "Overview";
+
+  if (name === "overview") {
+    requestAnimationFrame(() => {
+      drawCashFlowChart();
+      renderCategoryDonut();
+      FFM.stagger(".metric, .insight-card");
+    });
+  } else if (name === "budgets") {
+    renderBudgets();
+    FFM.stagger(".budget-card");
+  } else if (name === "goals") {
+    renderGoals();
+    FFM.stagger(".goal-card");
+  } else if (name === "profile") {
+    renderProfileView();
+  }
+}
+
+document.querySelectorAll(".nav button").forEach(b => b.addEventListener("click", () => switchPage(b.dataset.page)));
+$("viewAll").addEventListener("click", () => switchPage("transactions"));
+$("userAvatar").addEventListener("click", () => switchPage("profile"));
+
+// --- Cloud Sync: Supabase Methods ---
+async function loadTransactionsFromCloud() {
+  const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+  if (userError || !user) return;
+
+  const { data, error } = await supabaseClient
+    .from("transactions")
+    .select("*")
+    .eq("user_id", user.id)
+    .order("transaction_date", { ascending: false });
+
+if (!error && data) {    transactions = data.map(row => ({
+      id: row.id,
+      description: row.description,
+      amount: Number(row.amount),
+      type: row.type,
+      category: row.category,
+      date: row.transaction_date,
+      note: row.note || ""
+    }));
+    saveJSON(STORAGE_KEY, transactions);
+    render();
+  }
+}
+
+async function loadBudgetsFromCloud() {
+  const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+  if (userError || !user) return;
+
+  const { data, error } = await supabaseClient
+    .from("budgets")
+    .select("category, monthly_limit")
+    .eq("user_id", user.id);
+
+if (!error && data) {    budgets = {};
+    data.forEach(row => {
+      budgets[row.category] = Number(row.monthly_limit);
+    });
+    saveJSON(BUDGET_KEY, budgets);
+    renderBudgets();
+  }
+}
+
+async function loadGoalsFromCloud() {
+  try {
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    if (userError || !user) return;
+
+    const { data, error } = await supabaseClient
+      .from("goals")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false });
+
+if (!error && data) {      goals = data.map(row => ({
+        id: row.id,
+        name: row.name,
+        target_amount: Number(row.target_amount),
+        saved_amount: Number(row.saved_amount || 0),
+        deadline: row.deadline || "",
+        emoji: row.emoji || "🎯"
+      }));
+      saveJSON(GOALS_KEY, goals);
+      renderGoals();
+    }
+  } catch (err) {
+    console.log("Goals table sync notice:", err);
+  }
+}
+
+async function migrateDemoTransactionsToCloud() {
+  const { data: { user }, error: authError } = await supabaseClient.auth.getUser();
+  if (authError || !user) {
     toast("Please log in before migrating.");
     return;
   }
 
-  const { data: existing, error: readError } =
-    await supabaseClient
-      .from("transactions")
-      .select("id")
-      .eq("user_id", user.id)
-      .limit(1);
-
-  if (readError) throw readError;
-
-  if (existing.length > 0) {
-    toast("Cloud transactions already exist. Nothing imported.");
+  const { data: existing } = await supabaseClient.from("transactions").select("id").eq("user_id", user.id).limit(1);
+  if (existing && existing.length > 0) {
+    toast("Cloud records already exist. Import skipped.");
     return;
   }
 
@@ -177,467 +1716,1114 @@ async function migrateDemoTransactionsToCloud() {
     amount: t.amount,
     type: t.type,
     category: t.category,
-    transaction_date: t.date
+    transaction_date: t.date,
+    note: t.note || ""
   }));
 
-  const { error } = await supabaseClient
-    .from("transactions")
-    .insert(rows);
-
+  const { error } = await supabaseClient.from("transactions").insert(rows);
   if (error) throw error;
 
-  toast("Sample transactions uploaded! Refresh the page.");
-  console.log("Finova demo data migration completed.");
+  toast("Sample transactions uploaded to cloud!");
+  await loadTransactionsFromCloud();
 }
 
-function loadJSON(key,fallback){try{const raw=localStorage.getItem(key);return raw===null?fallback:JSON.parse(raw)}catch(e){return fallback}}
-
-async function loadTransactionsFromCloud() {
-  const { data: { user }, error: userError } =
-    await supabaseClient.auth.getUser();
-
-  if (userError) throw userError;
-  if (!user) throw new Error("Please log in first.");
-
-  const { data, error } = await supabaseClient
-    .from("transactions")
-    .select("*")
-    .eq("user_id", user.id)
-    .order("transaction_date", { ascending: false });
-
-  if (error) throw error;
-
-  transactions = data.map(row => ({
-    id: row.id,
-    description: row.description,
-    amount: Number(row.amount),
-    type: row.type,
-    category: row.category,
-    date: row.transaction_date
-  }));
-
-  render();
-}
-async function loadBudgetsFromCloud() {
-  const { data: { user }, error: userError } =
-    await supabaseClient.auth.getUser();
-
-  if (userError) throw userError;
-  if (!user) throw new Error("Please log in first.");
-
-  const { data, error } = await supabaseClient
-    .from("budgets")
-    .select("category, monthly_limit")
-    .eq("user_id", user.id);
-
-  if (error) throw error;
-
-  budgets = {};
-
-  data.forEach(row => {
-    budgets[row.category] = Number(row.monthly_limit);
-  });
-
-  saveJSON(BUDGET_KEY, budgets);
-  renderBudgets();
+// --- Transaction Modal & CRUD ---
+function openModal(isEdit = false) {
+  $("modalBg").classList.add("open");
+  FFM.modalEnter($("modalBg").querySelector(".modal"));
+  $("modalTitle").textContent = isEdit ? "Edit Transaction" : "Add Transaction";
+  $("saveTxSubmit").textContent = isEdit ? "Update Transaction" : "Save Transaction";
+  if (!isEdit) {
+    editingId = null;
+    $("transactionForm").reset();
+    $("txDate").value = isoDate(new Date());
+  }
+  $("txDescription").focus();
 }
 
-
-let transactions=loadJSON(STORAGE_KEY,null); if(!Array.isArray(transactions)){transactions=demoData;saveJSON(STORAGE_KEY,transactions)}
-
-let budgets = {};
-let editingId=null;
-function saveJSON(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(e){toast("Browser storage unavailable. Changes may not persist.")}}
-function fmt(n){return money.format(Number(n)||0)}
-function niceDate(s){if(!s)return "—";const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})}
-function toast(message){const el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove("show"),2500)}
-function totals(list=transactions){return list.reduce((a,t)=>{a[t.type==="income"?"income":"expense"]+=Number(t.amount)||0;return a},{income:0,expense:0})}
-function iconFor(t){if(t.type==="income")return "↗";return ({Food:"☕",Transport:"↗",Education:"▤",Shopping:"◇",Bills:"▧",Health:"＋",Entertainment:"♫"})[t.category]||"↘"}
-function makeCell(text,className){const td=document.createElement("td");td.textContent=text;if(className)td.className=className;return td}
-function transactionRow(t,withActions=true){const tr=document.createElement("tr");const nameTd=document.createElement("td");const nameWrap=document.createElement("div");nameWrap.className="tx-name";const icon=document.createElement("span");icon.className="tx-icon";icon.textContent=iconFor(t);const name=document.createElement("span");name.textContent=t.description;nameWrap.append(icon,name);nameTd.append(nameWrap);const cat=makeCell("");const tag=document.createElement("span");tag.className="tag";tag.textContent=t.category;cat.append(tag);tr.append(nameTd,cat,makeCell(niceDate(t.date)),makeCell(t.type==="income"?"Income":"Expense","type "+t.type),makeCell((t.type==="income"?"+":"−")+fmt(t.amount),t.type==="income"?"income":"expense"));const action=makeCell("");if(withActions){const wrap=document.createElement("div");wrap.className="actions";const edit=document.createElement("button");edit.className="small-btn";edit.textContent="Edit";edit.type="button";edit.addEventListener("click",()=>editTransaction(t.id));const del=document.createElement("button");del.className="small-btn";del.textContent="Delete";del.type="button";del.addEventListener("click",()=>deleteTransaction(t.id));wrap.append(edit,del);action.append(wrap)}tr.append(action);return tr}
-function renderRows(){const sorted=[...transactions].sort((a,b)=>b.date.localeCompare(a.date));const recent=$("recentRows");recent.replaceChildren();sorted.slice(0,5).forEach(t=>recent.append(transactionRow(t,false)));$("recentEmpty").hidden=sorted.length>0;$("recentFoot").textContent=`Showing ${Math.min(5,sorted.length)} of ${sorted.length} transaction${sorted.length===1?"":"s"}.`;const q=$("searchInput").value.trim().toLowerCase();const type=$("filterType").value;const filtered=sorted.filter(t=>(type==="all"||t.type===type)&&[t.description,t.category,t.date,t.type].some(v=>String(v).toLowerCase().includes(q)));const all=$("allRows");all.replaceChildren();filtered.forEach(t=>all.append(transactionRow(t,true)));$("allEmpty").hidden=filtered.length>0;$("allFoot").textContent=`${filtered.length} matching record${filtered.length===1?"":"s"} · ${sorted.length} total`; $("historySub").textContent=`${sorted.length} saved in this browser demo`}
-function renderCategories(){const list=$("categoryList");list.replaceChildren();const map={};transactions.filter(t=>t.type==="expense").forEach(t=>map[t.category]=(map[t.category]||0)+Number(t.amount));const entries=Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,5);if(!entries.length){const p=document.createElement("p");p.className="sub";p.textContent="Add an expense to see your spending breakdown.";list.append(p)}else{const max=entries[0][1]||1;entries.forEach(([name,amount])=>{const row=document.createElement("div");const top=document.createElement("div");top.className="category-top";const n=document.createElement("span");n.textContent=name;const val=document.createElement("strong");val.textContent=fmt(amount);top.append(n,val);const track=document.createElement("div");track.className="track";const fill=document.createElement("div");fill.className="fill";fill.style.width=Math.max(3,amount/max*100)+"%";track.append(fill);row.append(top,track);list.append(row)})}const expenseTransactions=transactions.filter(t=>t.type==="expense");$("averageExpense").textContent=fmt(expenseTransactions.length?expenseTransactions.reduce((a,t)=>a+Number(t.amount),0)/expenseTransactions.length:0);$("topCategory").textContent=entries.length?entries[0][0]:"—"}
-function renderMetrics(){const t=totals();$("incomeValue").textContent=fmt(t.income);$("expenseValue").textContent=fmt(t.expense);$("balanceValue").textContent=fmt(t.income-t.expense);$("countValue").textContent=transactions.length.toLocaleString("en-IN");$("balanceNote").textContent=t.income-t.expense<0?"Expenses exceed income":"Income minus expenses";$("balanceNote").className="metric-foot "+(t.income-t.expense<0?"down":"up")}
-function drawChart(){const canvas=$("cashflow"),rect=canvas.getBoundingClientRect();if(!rect.width||!rect.height)return;const ratio=window.devicePixelRatio||1;canvas.width=Math.round(rect.width*ratio);canvas.height=Math.round(rect.height*ratio);const ctx=canvas.getContext("2d");ctx.scale(ratio,ratio);const w=rect.width,h=rect.height;ctx.clearRect(0,0,w,h);const count=Number($("rangeSelect").value),now=new Date(),months=[];for(let i=count-1;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push({key:`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`,label:d.toLocaleDateString("en-IN",{month:"short"}),income:0,expense:0})}transactions.forEach(t=>{const m=months.find(m=>m.key===monthKey(t.date));if(m)m[t.type==="income"?"income":"expense"]+=Number(t.amount)});const max=Math.max(1,...months.flatMap(m=>[m.income,m.expense]));const left=8,right=8,top=10,bottom=28,ph=h-top-bottom,pw=w-left-right,group=pw/count,bw=Math.min(17,group*.24);ctx.font="10px system-ui";for(let i=0;i<=3;i++){const y=top+ph*i/3;ctx.strokeStyle="#edf1f6";ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(w-right,y);ctx.stroke()}months.forEach((m,i)=>{const x=left+group*(i+.5),ih=m.income/max*ph,eh=m.expense/max*ph;ctx.fillStyle="#5478f6";ctx.fillRect(x-bw-2,top+ph-ih,bw,ih);ctx.fillStyle="#1eb98a";ctx.fillRect(x+2,top+ph-eh,bw,eh);ctx.fillStyle="#8793a7";ctx.textAlign="center";ctx.fillText(m.label,x,h-8)})}
-function currentMonthExpenses(category){const now=isoDate(new Date()).slice(0,7);return transactions.filter(t=>t.type==="expense"&&t.category===category&&t.date.slice(0,7)===now).reduce((s,t)=>s+Number(t.amount),0)}
-function renderBudgets(){const grid=$("budgetGrid");grid.replaceChildren();Object.entries(budgets).forEach(([category,limit])=>{const spent=currentMonthExpenses(category),pct=limit>0?spent/limit*100:0;const card=document.createElement("div");card.className="budget-card";const h=document.createElement("h3");h.textContent=category;const p=document.createElement("p");p.textContent="Monthly spending limit";const amount=document.createElement("div");amount.className="budget-amount";amount.textContent=fmt(spent);const sub=document.createElement("p");sub.textContent=`of ${fmt(limit)} used · ${Math.round(pct)}%`;const track=document.createElement("div");track.className="track";const fill=document.createElement("div");fill.className="fill";fill.style.width=Math.min(100,pct)+"%";if(pct>100)fill.style.background="linear-gradient(90deg,#e45f73,#f39aa7)";track.append(fill);const edit=document.createElement("button");edit.className="btn outline";edit.style.marginTop="14px";edit.textContent="Edit limit";
-edit.addEventListener("click", async () => {
-  const value = prompt(`Set monthly budget for ${category} (₹):`, limit);
-  if (value === null) return;
-
-  const n = Number(value);
-  if (!Number.isFinite(n) || n <= 0) {
-    toast("Enter a valid budget greater than zero.");
-    return;
-  }
-
-  try {
-    const { data: { user }, error: userError } =
-      await supabaseClient.auth.getUser();
-
-    if (userError) throw userError;
-    if (!user) throw new Error("Please log in first.");
-
-    const { error } = await supabaseClient
-      .from("budgets")
-      .update({ monthly_limit: n })
-      .eq("user_id", user.id)
-      .eq("category", category);
-
-    if (error) throw error;
-
-    budgets[category] = n;
-    saveJSON(BUDGET_KEY, budgets);
-    renderBudgets();
-    toast("Budget updated in cloud.");
-  } catch (error) {
-    console.error("Budget update failed:", error);
-    toast("Could not update budget: " + error.message);
-  }
-});
-card.append(h,p,amount,sub,track,edit);grid.append(card)})}
-function render(){renderMetrics();renderRows();renderCategories();renderBudgets();drawChart()}
-function switchPage(name){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+name));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===name));$("crumbLabel").textContent=({overview:"Overview",transactions:"Transactions",budgets:"Budgets"})[name];if(name==="overview")requestAnimationFrame(drawChart)}
-function openModal(){ $("modalBg").classList.add("open");$("modalTitle").textContent=editingId?"Edit transaction":"Add transaction";$("txDescription").focus()}
-function closeModal(){ $("modalBg").classList.remove("open");$("transactionForm").reset();editingId=null;$("txDate").value=isoDate(new Date())}
-
-async function addTransaction() {
-  const description = $("txDescription").value.trim();
-  const amount = Number($("txAmount").value);
-  const type = $("txType").value;
-  const category = $("txCategory").value;
-  const date = $("txDate").value;
-
-  if (!description || !Number.isFinite(amount) || amount <= 0 || !date) {
-    toast("Enter a description, valid amount, and date.");
-    return;
-  }
-
-  try {
-    const { data: { user }, error: userError } =
-      await supabaseClient.auth.getUser();
-
-    if (userError) throw userError;
-    if (!user) throw new Error("Please log in first.");
-
-    const { data, error } = await supabaseClient
-      .from("transactions")
-      .insert({
-        user_id: user.id,
-        description,
-        amount,
-        type,
-        category,
-        transaction_date: date
-      })
-      .select()
-      .single();
-
-    if (error) throw error;
-
-    transactions.unshift({
-      id: data.id,
-      description: data.description,
-      amount: Number(data.amount),
-      type: data.type,
-      category: data.category,
-      date: data.transaction_date
-    });
-
-    saveJSON(STORAGE_KEY, transactions);
-    closeModal();
-    render();
-    toast("Transaction saved to cloud.");
-  } catch (error) {
-    toast("Could not save: " + error.message);
-  }
+function closeModal() {
+  $("modalBg").classList.remove("open");
+  $("transactionForm").reset();
+  editingId = null;
+  $("txDate").value = isoDate(new Date());
 }
 
-async function editTransaction(id) {
-  toast("Cloud editing will be connected next.");
+$("quickAdd").addEventListener("click", () => openModal(false));
+$("transactionAdd").addEventListener("click", () => openModal(false));
+$("closeModal").addEventListener("click", closeModal);
+$("cancelModal").addEventListener("click", closeModal);
+$("modalBg").addEventListener("click", e => { if (e.target === $("modalBg")) closeModal(); });
+
+function editTransaction(id) {
+  const t = transactions.find(x => x.id === id);
+  if (!t) return;
+  editingId = id;
+  $("txDescription").value = t.description;
+  $("txAmount").value = t.amount;
+  $("txType").value = t.type;
+  $("txCategory").value = t.category;
+  $("txDate").value = t.date;
+  $("txNote").value = t.note || "";
+  openModal(true);
 }
 
 async function deleteTransaction(id) {
   const transaction = transactions.find(t => t.id === id);
   if (!transaction) return;
-
-  if (!confirm(`Delete "${transaction.description}"?`)) return;
+  if (!confirm(`Are you sure you want to delete "${transaction.description}"?`)) return;
 
   try {
-    const { data: { user }, error: userError } =
-      await supabaseClient.auth.getUser();
-
-    if (userError) throw userError;
-    if (!user) throw new Error("Please log in first.");
-
-    const { error } = await supabaseClient
-      .from("transactions")
-      .delete()
-      .eq("id", id)
-      .eq("user_id", user.id);
-
-    if (error) throw error;
-
-    transactions = transactions.filter(t => t.id !== id);
-    saveJSON(STORAGE_KEY, transactions);
-    render();
-    toast("Transaction deleted.");
-  } catch (error) {
-    toast("Could not delete: " + error.message);
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (user && !String(id).startsWith("seed-")) {
+      await supabaseClient.from("transactions").delete().eq("id", id).eq("user_id", user.id);
+    }
+  } catch (err) {
+    console.error("Cloud delete error:", err);
   }
+
+  transactions = transactions.filter(t => t.id !== id);
+  saveJSON(STORAGE_KEY, transactions);
+  render();
+  toast("Transaction deleted.");
 }
-document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>switchPage(b.dataset.page)));
-$("quickAdd").addEventListener("click", () => openModal());
-$("transactionAdd").addEventListener("click", () => openModal());$("viewAll").addEventListener("click",()=>switchPage("transactions"));$("closeModal").addEventListener("click",closeModal);$("cancelModal").addEventListener("click",closeModal);$("modalBg").addEventListener("click",e=>{if(e.target===$("modalBg"))closeModal()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});$("rangeSelect").addEventListener("change",drawChart);window.addEventListener("resize",()=>requestAnimationFrame(drawChart));$("searchInput").addEventListener("input",renderRows);$("filterType").addEventListener("change",renderRows);
 
-$("transactionForm").addEventListener("submit", async (e) => {
+$("transactionForm").addEventListener("submit", async e => {
   e.preventDefault();
-
   const description = $("txDescription").value.trim();
   const amount = Number($("txAmount").value);
   const type = $("txType").value;
   const category = $("txCategory").value;
   const date = $("txDate").value;
+  const note = $("txNote").value.trim();
 
   if (!description || !Number.isFinite(amount) || amount <= 0 || !date) {
-    toast("Enter a description, valid amount, and date.");
+    toast("Please enter description, valid amount, and date.");
     return;
   }
 
   try {
-    const { data: { user }, error: userError } =
-      await supabaseClient.auth.getUser();
-
-    if (userError) throw userError;
-    if (!user) throw new Error("Please log in first.");
+    const { data: { user } } = await supabaseClient.auth.getUser();
 
     if (editingId) {
-      const { data, error } = await supabaseClient
-        .from("transactions")
-        .update({ description, amount, type, category, transaction_date: date })
-        .eq("id", editingId)
-        .eq("user_id", user.id)
-        .select()
-        .single();
-
-      if (error) throw error;
-
-      transactions = transactions.map(t =>
-        t.id === editingId
-          ? { ...t, description, amount, type, category, date: data.transaction_date }
-          : t
-      );
+      if (user && !String(editingId).startsWith("seed-")) {
+        await supabaseClient
+          .from("transactions")
+          .update({ description, amount, type, category, transaction_date: date, note })
+          .eq("id", editingId)
+          .eq("user_id", user.id);
+      }
+      transactions = transactions.map(t => t.id === editingId ? { ...t, description, amount, type, category, date, note } : t);
+      toast("Transaction updated.");
     } else {
-      const { data, error } = await supabaseClient
-        .from("transactions")
-        .insert({
-          user_id: user.id,
-          description,
-          amount,
-          type,
-          category,
-          transaction_date: date
-        })
-        .select()
-        .single();
-
-      if (error) throw error;
-
-      transactions.unshift({
-        id: data.id,
-        description: data.description,
-        amount: Number(data.amount),
-        type: data.type,
-        category: data.category,
-        date: data.transaction_date
-      });
+      let newId = "local-" + Date.now();
+      if (user) {
+        const { data, error } = await supabaseClient
+          .from("transactions")
+          .insert({ user_id: user.id, description, amount, type, category, transaction_date: date, note })
+          .select()
+          .single();
+        if (!error && data) newId = data.id;
+      }
+      transactions.unshift({ id: newId, description, amount, type, category, date, note });
+      toast("Transaction saved.");
     }
 
     saveJSON(STORAGE_KEY, transactions);
-    render();
     closeModal();
-    toast("Transaction saved to cloud.");
-  } catch (error) {
-    toast("Could not save: " + error.message);
+    render();
+  } catch (err) {
+    toast("Save notice: " + err.message);
   }
 });
 
-$("budgetForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
+// --- CSV Export ---
+function exportCSV() {
+  if (!transactions.length) {
+    toast("No transactions to export.");
+    return;
+  }
+  const headers = ["ID", "Description", "Category", "Type", `Amount (${profile.currency})`, "Date", "Notes"];
+  const rows = transactions.map(t => [
+    `"${t.id}"`,
+    `"${(t.description || "").replace(/"/g, '""')}"`,
+    `"${t.category}"`,
+    `"${t.type}"`,
+    t.amount,
+    `"${t.date}"`,
+    `"${(t.note || "").replace(/"/g, '""')}"`
+  ]);
 
-  const name = $("budgetCategory").value.trim();
-  const amount = Number($("budgetAmount").value);
+  const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", `finova_transactions_${isoDate(new Date())}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  toast("CSV export generated!");
+}
+$("exportCsvBtn").addEventListener("click", exportCSV);
 
-  if (!name || !Number.isFinite(amount) || amount <= 0) {
-    toast("Enter a category and a valid budget.");
+// --- Table Rendering ---
+function makeCell(text, className) {
+  const td = document.createElement("td");
+  td.textContent = text;
+  if (className) td.className = className;
+  return td;
+}
+
+function transactionRow(t, withActions = true) {
+  const tr = document.createElement("tr");
+
+  const nameTd = document.createElement("td");
+  const nameWrap = document.createElement("div");
+  nameWrap.className = "tx-name";
+  const icon = document.createElement("span");
+  icon.className = "tx-icon";
+  icon.textContent = iconFor(t);
+  const nameText = document.createElement("div");
+  const titleSpan = document.createElement("span");
+  titleSpan.textContent = t.description;
+  nameText.appendChild(titleSpan);
+  if (t.note) {
+    const noteSpan = document.createElement("span");
+    noteSpan.className = "tx-note";
+    noteSpan.textContent = t.note;
+    nameText.appendChild(noteSpan);
+  }
+  nameWrap.append(icon, nameText);
+  nameTd.append(nameWrap);
+
+  const catTd = makeCell("");
+  const tag = document.createElement("span");
+  tag.className = "tag";
+  tag.textContent = t.category;
+  catTd.append(tag);
+
+  tr.append(
+    nameTd,
+    catTd,
+    makeCell(niceDate(t.date)),
+    makeCell(t.type === "income" ? "Income" : "Expense", "type " + t.type),
+    makeCell((t.type === "income" ? "+" : "−") + fmt(t.amount), t.type === "income" ? "income" : "expense")
+  );
+
+  const actionTd = makeCell("");
+  if (withActions) {
+    const wrap = document.createElement("div");
+    wrap.className = "actions";
+    const edit = document.createElement("button");
+    edit.className = "small-btn";
+    edit.textContent = "Edit";
+    edit.type = "button";
+    edit.onclick = () => editTransaction(t.id);
+
+    const del = document.createElement("button");
+    del.className = "small-btn";
+    del.textContent = "Delete";
+    del.type = "button";
+    del.onclick = () => deleteTransaction(t.id);
+
+    wrap.append(edit, del);
+    actionTd.append(wrap);
+  }
+  tr.append(actionTd);
+  return tr;
+}
+
+function renderRows() {
+  const sorted = [...transactions].sort((a, b) => b.date.localeCompare(a.date));
+
+  // Recent on Overview
+  const recent = $("recentRows");
+  recent.replaceChildren();
+  sorted.slice(0, 5).forEach(t => recent.append(transactionRow(t, false)));
+  $("recentEmpty").hidden = sorted.length > 0;
+  $("recentFoot").textContent = `Displaying ${Math.min(5, sorted.length)} of ${sorted.length} recorded entry(ies).`;
+
+  // All on Transactions Page
+  const q = $("searchInput").value.trim().toLowerCase();
+  const type = $("filterType").value;
+  const cat = $("filterCategory").value;
+
+  const filtered = sorted.filter(t => {
+    const matchType = type === "all" || t.type === type;
+    const matchCat = cat === "all" || t.category === cat;
+    const matchQ = [t.description, t.category, t.date, t.type, t.note || ""].some(v => String(v).toLowerCase().includes(q));
+    return matchType && matchCat && matchQ;
+  });
+
+  const all = $("allRows");
+  all.replaceChildren();
+  filtered.forEach(t => all.append(transactionRow(t, true)));
+  $("allEmpty").hidden = filtered.length > 0;
+  $("allFoot").textContent = `${filtered.length} matching record(s) · ${sorted.length} total entries`;
+  $("historySub").textContent = `${sorted.length} verified records in sync`;
+}
+
+$("searchInput").addEventListener("input", renderRows);
+$("filterType").addEventListener("change", renderRows);
+$("filterCategory").addEventListener("change", renderRows);
+
+// --- Metrics & Smart Insights ---
+function renderMetrics() {
+  const t = totals();
+  $("incomeValue").textContent = fmt(t.income);
+  $("expenseValue").textContent = fmt(t.expense);
+  const net = t.income - t.expense;
+  $("balanceValue").textContent = fmt(net);
+  $("countValue").textContent = transactions.length.toLocaleString("en-IN");
+  $("balanceNote").textContent = net < 0 ? "Expenses exceed current income" : "Income minus expenses";
+  $("balanceNote").className = "metric-foot " + (net < 0 ? "down" : "up");
+
+  // 1. Savings Rate vs User Target
+  const savingsRate = t.income > 0 ? Math.max(0, Math.round(((t.income - t.expense) / t.income) * 100)) : 0;
+  $("insightSavingsRate").textContent = savingsRate + "%";
+  const targetRate = Number(profile.savingsGoalRate) || 20;
+  $("insightSavingsNote").textContent = savingsRate >= targetRate ? `Target met (Goal: ${targetRate}%)` : `Below goal (${targetRate}%)`;
+
+  // 2. Daily Burn Rate
+  const currentMonth = isoDate(new Date()).slice(0, 7);
+  const thisMonthExpenses = transactions.filter(x => x.type === "expense" && x.date.startsWith(currentMonth));
+  const monthTotal = thisMonthExpenses.reduce((s, x) => s + Number(x.amount), 0);
+  const currentDay = Math.max(1, new Date().getDate());
+  const dailyBurn = Math.round(monthTotal / currentDay);
+  $("insightDailyBurn").textContent = fmt(dailyBurn) + "/day";
+
+  // 3. Month-over-Month Expense Trend
+  const lastMonthDate = new Date();
+  lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
+  const lastMonth = isoDate(lastMonthDate).slice(0, 7);
+  const lastMonthExpenses = transactions
+    .filter(x => x.type === "expense" && x.date.startsWith(lastMonth))
+    .reduce((s, x) => s + Number(x.amount), 0);
+
+  if (lastMonthExpenses > 0) {
+    const momDiff = Math.round(((monthTotal - lastMonthExpenses) / lastMonthExpenses) * 100);
+    const sign = momDiff > 0 ? "+" : "";
+    $("insightMomTrend").textContent = sign + momDiff + "%";
+    $("insightMomTrend").className = "insight-value " + (momDiff > 0 ? "down" : "up");
+    $("insightMomNote").textContent = momDiff <= 0 ? "Spending decreased vs last mo" : "Spending increased vs last mo";
+  } else {
+    $("insightMomTrend").textContent = "Steady";
+    $("insightMomNote").textContent = "Baseline established";
+  }
+
+  // 4. Budget Adherence Alert
+  let overCount = 0;
+  Object.entries(budgets).forEach(([cat, limit]) => {
+    const spent = calculateBudgetSpending(cat);
+    if (limit > 0 && spent > limit) overCount++;
+  });
+  if (overCount > 0) {
+    $("insightBudgetAlert").textContent = `${overCount} Over Budget!`;
+    $("insightBudgetAlert").style.color = "var(--red)";
+    $("insightBudgetNote").textContent = "Exceeded monthly allowance";
+  } else {
+    $("insightBudgetAlert").textContent = "All On Track 🎯";
+    $("insightBudgetAlert").style.color = "var(--mint)";
+    $("insightBudgetNote").textContent = "100% compliant with limits";
+  }
+}
+
+// --- Donut Chart (Chart.js) ---
+const chartColors = [
+  "#4f46e5", "#10b981", "#f59e0b", "#f43f5e",
+  "#8b5cf6", "#06b6d4", "#ec4899", "#64748b"
+];
+
+function renderCategoryDonut() {
+  const map = {};
+  transactions.filter(t => t.type === "expense").forEach(t => {
+    map[t.category] = (map[t.category] || 0) + Number(t.amount);
+  });
+  const entries = Object.entries(map).sort((a, b) => b[1] - a[1]);
+
+  const legend = $("donutLegend");
+  legend.replaceChildren();
+
+  const totalExpense = entries.reduce((s, [, v]) => s + v, 0);
+
+  if (!entries.length) {
+    legend.innerHTML = "<p class='sub' style='margin:0;'>No expenses recorded yet.</p>";
+    if (donutChartInstance) {
+      donutChartInstance.destroy();
+      donutChartInstance = null;
+    }
     return;
   }
 
-  if (Object.keys(budgets).some(
-    k => k.toLowerCase() === name.toLowerCase()
-  )) {
-    toast("A budget already exists for that category.");
+  entries.slice(0, 6).forEach(([cat, val], idx) => {
+    const pct = totalExpense > 0 ? Math.round((val / totalExpense) * 100) : 0;
+    const color = chartColors[idx % chartColors.length];
+
+    const row = document.createElement("div");
+    row.className = "donut-item";
+    row.innerHTML = `
+      <div class="donut-item-left">
+        <span class="donut-item-color" style="background:${color};"></span>
+        <span>${cat} <span style="color:var(--muted);">(${pct}%)</span></span>
+      </div>
+      <div class="donut-item-amount">${fmt(val)}</div>
+    `;
+    legend.appendChild(row);
+  });
+
+  const ctx = $("categoryDonutChart").getContext("2d");
+  if (donutChartInstance) {
+    donutChartInstance.destroy();
+  }
+
+  donutChartInstance = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: entries.map(e => e[0]),
+      datasets: [{
+        data: entries.map(e => e[1]),
+        backgroundColor: chartColors.slice(0, entries.length),
+        borderWidth: 2,
+        borderColor: document.documentElement.getAttribute("data-theme") === "dark" ? "#0f172a" : "#ffffff"
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: "68%",
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: context => ` ${context.label}: ${fmt(context.raw)}`
+          }
+        }
+      }
+    }
+  });
+
+  const expenseTxs = transactions.filter(t => t.type === "expense");
+  $("averageExpense").textContent = fmt(expenseTxs.length ? totalExpense / expenseTxs.length : 0);
+  $("topCategory").textContent = entries.length ? entries[0][0] : "—";
+}
+
+// --- Cash Flow Canvas Chart ---
+function drawCashFlowChart() {
+  const canvas = $("cashflow");
+  if (!canvas) return;
+  const rect = canvas.getBoundingClientRect();
+  if (!rect.width || !rect.height) return;
+
+  const ratio = window.devicePixelRatio || 1;
+  canvas.width = Math.round(rect.width * ratio);
+  canvas.height = Math.round(rect.height * ratio);
+  const ctx = canvas.getContext("2d");
+  ctx.scale(ratio, ratio);
+
+  const w = rect.width, h = rect.height;
+  ctx.clearRect(0, 0, w, h);
+
+  const count = Number($("rangeSelect").value);
+  const now = new Date();
+  const months = [];
+  for (let i = count - 1; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    months.push({
+      key: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`,
+      label: d.toLocaleDateString("en-US", { month: "short" }),
+      income: 0,
+      expense: 0
+    });
+  }
+
+  transactions.forEach(t => {
+    const m = months.find(x => x.key === monthKey(t.date));
+    if (m) m[t.type === "income" ? "income" : "expense"] += Number(t.amount);
+  });
+
+  const max = Math.max(1, ...months.flatMap(m => [m.income, m.expense]));
+  const left = 8, right = 8, top = 12, bottom = 28;
+  const ph = h - top - bottom, pw = w - left - right;
+  const group = pw / count;
+  const bw = Math.min(18, group * 0.22);
+
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  const gridColor = isDark ? "#1e293b" : "#e2e8f0";
+  const textColor = isDark ? "#94a3b8" : "#64748b";
+
+  ctx.font = "10.5px Inter, sans-serif";
+
+  for (let i = 0; i <= 3; i++) {
+    const y = top + (ph * i) / 3;
+    ctx.strokeStyle = gridColor;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(left, y);
+    ctx.lineTo(w - right, y);
+    ctx.stroke();
+  }
+
+  months.forEach((m, i) => {
+    const x = left + group * (i + 0.5);
+    const ih = (m.income / max) * ph;
+    const eh = (m.expense / max) * ph;
+
+    ctx.fillStyle = "#4f46e5";
+    ctx.beginPath();
+    ctx.roundRect(x - bw - 2, top + ph - ih, bw, ih, [4, 4, 0, 0]);
+    ctx.fill();
+
+    ctx.fillStyle = "#10b981";
+    ctx.beginPath();
+    ctx.roundRect(x + 2, top + ph - eh, bw, eh, [4, 4, 0, 0]);
+    ctx.fill();
+
+    ctx.fillStyle = textColor;
+    ctx.textAlign = "center";
+    ctx.fillText(m.label, x, h - 8);
+  });
+}
+
+$("rangeSelect").addEventListener("change", drawCashFlowChart);
+window.addEventListener("resize", () => {
+  requestAnimationFrame(drawCashFlowChart);
+});
+
+// --- Upgraded Budgets System ---
+function calculateBudgetSpending(category) {
+  const period = $("budgetMonthFilter")?.value || "current";
+  const now = new Date();
+  const currentMonthStr = isoDate(now).slice(0, 7);
+  const thirtyDaysAgoStr = daysAgo(30);
+
+  return transactions.filter(t => {
+    if (t.type !== "expense") return false;
+    if (t.category.toLowerCase() !== category.toLowerCase()) return false;
+
+    if (period === "current") {
+      return t.date.slice(0, 7) === currentMonthStr;
+    } else if (period === "last30") {
+      return t.date >= thirtyDaysAgoStr;
+    } else {
+      return true; // All-time
+    }
+  }).reduce((sum, t) => sum + Number(t.amount), 0);
+}
+
+$("budgetMonthFilter")?.addEventListener("change", () => {
+  renderBudgets();
+  renderMetrics();
+});
+
+function renderBudgets() {
+  const grid = $("budgetGrid");
+  grid.replaceChildren();
+
+  const entries = Object.entries(budgets);
+
+  let totalCap = 0;
+  let totalSpent = 0;
+
+  if (!entries.length) {
+    grid.innerHTML = "<p class='sub' style='grid-column:1/-1; padding:20px; text-align:center;'>No category budgets configured yet. Click '+ New Category Budget' above to establish limits.</p>";
+  }
+
+  entries.forEach(([category, limit]) => {
+    totalCap += Number(limit);
+    const spent = calculateBudgetSpending(category);
+    totalSpent += spent;
+
+    const pct = limit > 0 ? (spent / limit) * 100 : 0;
+    const isOver = spent > limit;
+    const isWarning = pct >= 80 && !isOver;
+
+    const card = document.createElement("div");
+    card.className = "budget-card";
+
+    let statusClass = "background:var(--mint-bg); color:var(--mint);";
+    let statusText = "On Track";
+    if (isOver) {
+      statusClass = "background:var(--red-bg); color:var(--red);";
+      statusText = "Over Limit";
+    } else if (isWarning) {
+      statusClass = "background:var(--amber-bg); color:var(--amber);";
+      statusText = "Attention";
+    }
+
+    const catIcon = ({ Food: "☕", Transport: "🚗", Education: "🎓", Shopping: "🛍️", Bills: "⚡", Health: "💊", Entertainment: "🎬" })[category] || "📦";
+
+    card.innerHTML = `
+      <div class="budget-card-top">
+        <div class="budget-cat-info">
+          <div class="budget-cat-icon">${catIcon}</div>
+          <div>
+            <h3>${category}</h3>
+            <div class="sub">Cap: ${fmt(limit)}</div>
+          </div>
+        </div>
+        <div class="budget-status-pill" style="${statusClass}">${statusText}</div>
+      </div>
+      <div class="budget-spent-row">
+        <div class="budget-amount">${fmt(spent)}</div>
+        <div class="budget-sub">${Math.round(pct)}% of allowance utilized</div>
+      </div>
+      <div class="track">
+        <div class="fill" style="width:${Math.min(100, pct)}%; ${isOver ? 'background:linear-gradient(90deg,#f43f5e,#fb7185);' : isWarning ? 'background:linear-gradient(90deg,#f59e0b,#fbbf24);' : ''}"></div>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:8px;">
+        <span>${isOver ? '⚠️ Overspent by ' + fmt(spent - limit) : fmt(Math.max(0, limit - spent)) + ' remaining buffer'}</span>
+        <span>${Math.round(pct)}%</span>
+      </div>
+      <div class="budget-actions">
+        <button class="btn outline btn-sm" onclick="openEditBudgetModal('${category}', ${limit})">Edit Limit</button>
+        <button class="btn outline btn-sm" onclick="removeBudget('${category}')">Remove</button>
+      </div>
+    `;
+
+    grid.append(card);
+  });
+
+  // Update Budget Overview Strip
+  $("budgetTotalCap").textContent = fmt(totalCap);
+  $("budgetTotalSpent").textContent = fmt(totalSpent);
+  const remaining = Math.max(0, totalCap - totalSpent);
+  $("budgetTotalRemain").textContent = fmt(remaining);
+  $("budgetTotalRemain").className = "metric-value " + (totalSpent > totalCap ? "down" : "up");
+
+  const overallHealth = totalCap > 0 ? Math.max(0, 100 - Math.round((totalSpent / totalCap) * 100)) : 100;
+  $("budgetHealthScore").textContent = overallHealth + "%";
+  $("budgetHealthScore").className = "metric-value " + (overallHealth < 20 ? "down" : "up");
+}
+
+// Budget Modal Logic
+function openAddBudgetModal() {
+  editingBudgetCategory = null;
+  $("budgetModalTitle").textContent = "Set Category Budget";
+  $("modalBudgetAmount").value = "";
+  $("budgetModalBg").classList.add("open");
+  FFM.modalEnter($("budgetModalBg").querySelector(".modal"));
+  $("modalBudgetAmount").focus();
+}
+
+function openEditBudgetModal(category, currentLimit) {
+  editingBudgetCategory = category;
+  $("budgetModalTitle").textContent = `Edit Budget: ${category}`;
+  $("modalBudgetCategory").value = category;
+  $("modalBudgetAmount").value = currentLimit;
+  $("budgetModalBg").classList.add("open");
+  FFM.modalEnter($("budgetModalBg").querySelector(".modal"));
+  $("modalBudgetAmount").focus();
+}
+
+$("openAddBudgetModalBtn").addEventListener("click", openAddBudgetModal);
+$("closeBudgetModal").addEventListener("click", () => $("budgetModalBg").classList.remove("open"));
+$("cancelBudgetModal").addEventListener("click", () => $("budgetModalBg").classList.remove("open"));
+
+$("budgetModalForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const cat = $("modalBudgetCategory").value;
+  const amount = Number($("modalBudgetAmount").value);
+
+  if (!cat || !Number.isFinite(amount) || amount <= 0) {
+    toast("Please enter a valid budget amount.");
     return;
   }
 
   try {
-    const { data: { user }, error: userError } =
-      await supabaseClient.auth.getUser();
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (user) {
+      if (budgets[cat]) {
+        await supabaseClient.from("budgets").update({ monthly_limit: amount }).eq("user_id", user.id).eq("category", cat);
+      } else {
+        await supabaseClient.from("budgets").insert({ user_id: user.id, category: cat, monthly_limit: amount });
+      }
+    }
+  } catch (err) {
+    console.error("Budget cloud sync note:", err);
+  }
 
-    if (userError) throw userError;
-    if (!user) throw new Error("Please log in first.");
+  budgets[cat] = amount;
+  saveJSON(BUDGET_KEY, budgets);
+  $("budgetModalBg").classList.remove("open");
+  renderBudgets();
+  renderMetrics();
+  toast(`Budget set for ${cat}: ${fmt(amount)}`);
+});
 
-    const { data, error } = await supabaseClient
-      .from("budgets")
-      .insert({
-        user_id: user.id,
-        category: name,
-        monthly_limit: amount
-      })
-      .select()
-      .single();
+async function removeBudget(category) {
+  if (!confirm(`Remove monthly budget for "${category}"?`)) return;
 
+  try {
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (user) {
+      await supabaseClient.from("budgets").delete().eq("user_id", user.id).eq("category", category);
+    }
+  } catch (err) {}
+
+  delete budgets[category];
+  saveJSON(BUDGET_KEY, budgets);
+  renderBudgets();
+  renderMetrics();
+  toast(`Budget for ${category} removed.`);
+}
+
+// --- Goals Feature ---
+function renderGoals() {
+  const grid = $("goalsGrid");
+  grid.replaceChildren();
+
+  if (!goals.length) {
+    grid.innerHTML = "<p class='sub' style='grid-column:1/-1; padding:20px; text-align:center;'>No financial goals configured yet. Click '+ Create Goal' above to start tracking!</p>";
+    return;
+  }
+
+  goals.forEach(g => {
+    const target = Number(g.target_amount) || 1;
+    const saved = Number(g.saved_amount) || 0;
+    const pct = Math.min(100, Math.round((saved / target) * 100));
+    const isDone = saved >= target;
+
+    const card = document.createElement("div");
+    card.className = "goal-card";
+
+    card.innerHTML = `
+      <div class="goal-header">
+        <div class="goal-emoji">${g.emoji || "🎯"}</div>
+        <div class="goal-badge ${isDone ? 'complete' : ''}">${isDone ? '✓ Completed' : pct + '% Funded'}</div>
+      </div>
+      <h3 class="goal-name">${g.name}</h3>
+      <div class="goal-target">Target: ${fmt(target)} ${g.deadline ? '· Due ' + niceDate(g.deadline) : ''}</div>
+      <div class="goal-saved">${fmt(saved)}</div>
+      <div class="track">
+        <div class="fill" style="width:${pct}%; ${isDone ? 'background:linear-gradient(90deg,#10b981,#34d399);' : ''}"></div>
+      </div>
+      <div class="goal-meta">
+        <span>${isDone ? 'Goal achieved!' : fmt(Math.max(0, target - saved)) + ' remaining'}</span>
+        <span>${pct}%</span>
+      </div>
+      <div class="goal-actions">
+        <button class="btn primary btn-sm" onclick="openDepositModal('${g.id}')">＋ Add Funds</button>
+        <button class="btn outline btn-sm" onclick="deleteGoal('${g.id}')">Delete</button>
+      </div>
+    `;
+    grid.append(card);
+  });
+}
+
+$("openGoalModalBtn").addEventListener("click", () => {
+  $("goalForm").reset();
+  $("goalDeadline").value = daysAgo(-90);
+  $("goalModalBg").classList.add("open");
+  FFM.modalEnter($("goalModalBg").querySelector(".modal"));
+});
+$("closeGoalModal").addEventListener("click", () => $("goalModalBg").classList.remove("open"));
+$("cancelGoalModal").addEventListener("click", () => $("goalModalBg").classList.remove("open"));
+
+$("goalForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const name = $("goalName").value.trim();
+  const target = Number($("goalTarget").value);
+  const saved = Number($("goalSaved").value) || 0;
+  const emoji = $("goalEmoji").value;
+  const deadline = $("goalDeadline").value;
+
+  if (!name || target <= 0) {
+    toast("Enter a valid goal name and target.");
+    return;
+  }
+
+  let newId = "g-" + Date.now();
+  try {
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (user) {
+      const { data, error } = await supabaseClient
+        .from("goals")
+        .insert({ user_id: user.id, name, target_amount: target, saved_amount: saved, emoji, deadline })
+        .select()
+        .single();
+      if (!error && data) newId = data.id;
+    }
+  } catch (err) {
+    console.log("Goal cloud insert:", err);
+  }
+
+  goals.unshift({ id: newId, name, target_amount: target, saved_amount: saved, emoji, deadline });
+  saveJSON(GOALS_KEY, goals);
+  $("goalModalBg").classList.remove("open");
+  renderGoals();
+  toast("Financial goal established!");
+});
+
+function openDepositModal(id) {
+  const g = goals.find(x => x.id === id);
+  if (!g) return;
+  activeDepositGoalId = id;
+  $("depositModalTitle").textContent = `Contribute to ${g.name}`;
+  $("depositAmount").value = "";
+  $("depositModalBg").classList.add("open");
+  FFM.modalEnter($("depositModalBg").querySelector(".modal"));
+  $("depositAmount").focus();
+}
+
+$("closeDepositModal").addEventListener("click", () => $("depositModalBg").classList.remove("open"));
+$("cancelDepositModal").addEventListener("click", () => $("depositModalBg").classList.remove("open"));
+
+$("depositForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const amount = Number($("depositAmount").value);
+  if (!amount || amount <= 0) {
+    toast("Enter a valid contribution amount.");
+    return;
+  }
+  const g = goals.find(x => x.id === activeDepositGoalId);
+  if (!g) return;
+
+  g.saved_amount = (Number(g.saved_amount) || 0) + amount;
+
+  try {
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (user && !String(g.id).startsWith("g-")) {
+      await supabaseClient.from("goals").update({ saved_amount: g.saved_amount }).eq("id", g.id).eq("user_id", user.id);
+    }
+  } catch (err) {
+    console.log("Goal deposit sync:", err);
+  }
+
+  saveJSON(GOALS_KEY, goals);
+  $("depositModalBg").classList.remove("open");
+  renderGoals();
+  toast(`Added ${fmt(amount)} to ${g.name}!`);
+});
+
+async function deleteGoal(id) {
+  const g = goals.find(x => x.id === id);
+  if (!g) return;
+  if (!confirm(`Delete goal "${g.name}"?`)) return;
+
+  try {
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (user && !String(id).startsWith("g-")) {
+      await supabaseClient.from("goals").delete().eq("id", id).eq("user_id", user.id);
+    }
+  } catch (err) {}
+
+  goals = goals.filter(x => x.id !== id);
+  saveJSON(GOALS_KEY, goals);
+  renderGoals();
+  toast("Goal removed.");
+}
+
+// --- Profile & Preferences System ---
+function renderProfileView() {
+  $("profileDisplayName").textContent = profile.name || "Finova User";
+  $("profileNameInput").value = profile.name || "Finova User";
+  $("profileAvatarEmoji").value = profile.avatar || "FF";
+  $("prefCurrency").value = profile.currency || "INR";
+  $("prefTargetIncome").value = profile.targetIncome || 50000;
+  $("prefSavingsGoalRate").value = profile.savingsGoalRate || 20;
+
+  const avText = profile.avatar === "FF" ? (profile.name ? profile.name.slice(0, 2).toUpperCase() : "FF") : profile.avatar;
+  $("profileLargeAvatar").textContent = avText;
+  $("userAvatar").textContent = avText;
+}
+
+
+$("saveProfileBtn").addEventListener("click", async () => {
+  const { data: sessionData, error: sessionError } =
+    await supabaseClient.auth.getSession();
+
+  const user = sessionData?.session?.user;
+
+  if (sessionError || !user) {
+    toast("Please log in before saving your profile.");
+    return;
+  }
+
+  const displayName = $("profileNameInput").value.trim();
+
+  if (!displayName) {
+    toast("Please enter a profile name.");
+    return;
+  }
+
+  const updatedProfile = {
+    user_id: user.id,
+    display_name: displayName,
+    avatar: $("profileAvatarEmoji").value || "FF",
+    currency: $("prefCurrency").value || "INR",
+    target_income: Number($("prefTargetIncome").value) || 50000,
+    savings_goal_rate:
+      Number($("prefSavingsGoalRate").value) || 20,
+    updated_at: new Date().toISOString()
+  };
+
+  const { error } = await supabaseClient
+    .from("profiles")
+    .upsert(updatedProfile, { onConflict: "user_id" });
+
+  if (error) {
+    console.error("Profile save failed:", error);
+    toast("Could not save profile to cloud. Please try again.");
+    return;
+  }
+
+  profile.name = updatedProfile.display_name;
+  profile.avatar = updatedProfile.avatar;
+  profile.currency = updatedProfile.currency;
+  profile.targetIncome = updatedProfile.target_income;
+  profile.savingsGoalRate = updatedProfile.savings_goal_rate;
+
+  saveJSON(PROFILE_KEY, profile);
+  updateCurrencyFormatter();
+  renderProfileView();
+  render();
+
+  toast("Profile saved to cloud!");
+});
+
+
+$("prefCurrency").addEventListener("change", () => {
+  profile.currency = $("prefCurrency").value;
+  saveJSON(PROFILE_KEY, profile);
+  updateCurrencyFormatter();
+  render();
+  toast(`Currency changed to ${profile.currency}`);
+});
+
+$("backupJsonBtn").addEventListener("click", () => {
+  const backup = {
+    profile,
+    budgets,
+    goals,
+    transactions,
+    exportDate: new Date().toISOString()
+  };
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backup, null, 2));
+  const dl = document.createElement("a");
+  dl.setAttribute("href", dataStr);
+  dl.setAttribute("download", `finova_backup_${isoDate(new Date())}.json`);
+  document.body.appendChild(dl);
+  dl.click();
+  document.body.removeChild(dl);
+  toast("Full Finova backup downloaded!");
+});
+
+$("pingCloudBtn").addEventListener("click", async () => {
+  toast("Testing Supabase connection...");
+  try {
+    const start = performance.now();
+    const { error } = await supabaseClient.from("transactions").select("id").limit(1);
+    const ms = Math.round(performance.now() - start);
     if (error) throw error;
-
-    budgets[data.category] = Number(data.monthly_limit);
-
-    saveJSON(BUDGET_KEY, budgets);
-    $("budgetForm").reset();
-    renderBudgets();
-    toast("Budget saved to cloud.");
-  } catch (error) {
-    toast("Could not save budget: " + error.message);
+    toast(`Supabase online! Latency: ${ms}ms`);
+  } catch (err) {
+    toast(`Connection note: ${err.message}`);
   }
 });
-$("txDate").value=isoDate(new Date());render();
+
+$("resetSampleDataBtn").addEventListener("click", () => {
+  if (!confirm("Reset transactions and budgets to default demo state?")) return;
+  transactions = [...demoData];
+  budgets = { "Food": 6000, "Transport": 2500, "Bills": 3000, "Education": 4000, "Shopping": 5000 };
+  goals = [...demoGoals];
+  saveJSON(STORAGE_KEY, transactions);
+  saveJSON(BUDGET_KEY, budgets);
+  saveJSON(GOALS_KEY, goals);
+  render();
+  toast("Reset to sample state complete.");
+});
+
+// Global render
+function render() {
+  renderMetrics();
+  renderRows();
+  renderBudgets();
+  renderGoals();
+  requestAnimationFrame(() => {
+    drawCashFlowChart();
+    renderCategoryDonut();
+  });
+}
+
+// Initial setup
+initTheme();
+renderProfileView();
+$("txDate").value = isoDate(new Date());
+render();
 </script>
 
+<!-- Supabase Auth Logic -->
 <script>
-  let authMode = "login";
+let authMode = "login";
 
-  function showAuthMode(mode) {
-    authMode = mode;
-
-    document.getElementById("authSubmit").textContent =
-      mode === "login" ? "Login" : "Create Account";
-
-    document.getElementById("authMessage").textContent =
-      mode === "login"
-        ? "Log in to access your account."
-        : "Create your Finova account.";
+function showAuthMode(mode) {
+  authMode = mode;
+  $("authSubmit").textContent = mode === "login" ? "Login" : "Create Account";
+  $("authMessage").textContent = mode === "login" ? "Log in to access your cloud synchronized ledger." : "Create your Finova master account.";
+  if (mode === "login") {
+    $("tabLogin").style.background = "var(--lav)";
+    $("tabLogin").style.fontWeight = "700";
+    $("tabSignup").style.background = "transparent";
+    $("tabSignup").style.fontWeight = "500";
+  } else {
+    $("tabSignup").style.background = "var(--lav)";
+    $("tabSignup").style.fontWeight = "700";
+    $("tabLogin").style.background = "transparent";
+    $("tabLogin").style.fontWeight = "500";
   }
+}
 
-  document.getElementById("authForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
+$("authForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  const email = $("authEmail").value.trim();
+  const password = $("authPassword").value;
+  const message = $("authMessage");
+  const submitButton = $("authSubmit");
 
-    const email = document.getElementById("authEmail").value.trim();
-    const password = document.getElementById("authPassword").value;
-    const message = document.getElementById("authMessage");
-    const submitButton = document.getElementById("authSubmit");
+  submitButton.disabled = true;
+  message.textContent = "Connecting to Supabase...";
 
-    submitButton.disabled = true;
-    message.textContent = "Please wait...";
-
-    try {
-      let result;
-
-      if (authMode === "signup") {
-        result = await supabaseClient.auth.signUp({
-          email,
-          password
-        });
-      } else {
-        result = await supabaseClient.auth.signInWithPassword({
-          email,
-          password
-        });
-      }
-
-      if (result.error) throw result.error;
-
-      if (authMode === "signup" && !result.data.session) {
-        message.textContent =
-          "Account created! Check your email to confirm your account, then log in.";
-      } else {
-        message.textContent = "Login successful!";
-location.reload();      }
-    } catch (error) {
-      message.textContent = error.message || "Something went wrong.";
-    } finally {
-      submitButton.disabled = false;
+  try {
+    let result;
+    if (authMode === "signup") {
+      result = await supabaseClient.auth.signUp({ email, password });
+    } else {
+      result = await supabaseClient.auth.signInWithPassword({ email, password });
     }
-  });
 
- 
+    if (result.error) throw result.error;
+
+    if (authMode === "signup" && !result.data.session) {
+      message.textContent = "Account created! Check your email to confirm, then log in.";
+    } else {
+      message.textContent = "Authentication successful! Loading workspace...";
+      location.reload();
+    }
+  } catch (error) {
+    message.textContent = error.message || "Authentication failed.";
+  } finally {
+    submitButton.disabled = false;
+  }
+});
+
 function showLoginScreen() {
-  const authScreen = document.getElementById("authScreen");
-  const loginCard = authScreen.firstElementChild;
-
-  authScreen.style.cssText +=
-    ";display:flex!important;position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;z-index:999999!important;background:#f5f7fb!important;align-items:center!important;justify-content:center!important;";
-
-  loginCard.style.cssText +=
-    ";display:block!important;visibility:visible!important;opacity:1!important;background:white!important;color:#111!important;position:relative!important;z-index:1000000!important;";
-
+  const authScreen = $("authScreen");
+  authScreen.style.cssText += ";display:flex!important;position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;z-index:999999!important;align-items:center!important;justify-content:center!important;";
   document.querySelectorAll(".sidebar, .main").forEach(element => {
     element.style.display = "none";
   });
 }
+
+
+async function loadProfileFromCloud(user) {
+  const { data, error } = await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Could not load profile:", error.message);
+    throw error;
+  }
+
+  if (data) {
+    profile.name = data.display_name || "Finova User";
+    profile.avatar = data.avatar || "FF";
+    profile.currency = data.currency || "INR";
+    profile.targetIncome = Number(data.target_income) || 50000;
+    profile.savingsGoalRate = Number(data.savings_goal_rate) || 20;
+  } else {
+    // Create a separate default profile for this authenticated user.
+    const defaultName =
+      user.user_metadata?.full_name ||
+      user.user_metadata?.name ||
+      user.email?.split("@")[0] ||
+      "Finova User";
+
+    const newProfile = {
+      user_id: user.id,
+      display_name: defaultName,
+      avatar: "FF",
+      currency: "INR",
+      target_income: 50000,
+      savings_goal_rate: 20
+    };
+
+    const { error: insertError } = await supabaseClient
+      .from("profiles")
+      .insert(newProfile);
+
+    if (insertError) {
+      console.error("Could not create profile:", insertError.message);
+      throw insertError;
+    }
+
+    profile.name = newProfile.display_name;
+    profile.avatar = newProfile.avatar;
+    profile.currency = newProfile.currency;
+    profile.targetIncome = newProfile.target_income;
+    profile.savingsGoalRate = newProfile.savings_goal_rate;
+  }
+
+  saveJSON(PROFILE_KEY, profile);
+  updateCurrencyFormatter();
+  renderProfileView();
+}
+
 
 async function checkFinovaSession() {
   const { data, error } = await supabaseClient.auth.getSession();
-  const authScreen = document.getElementById("authScreen");
-if (error || !data.session) {
-  authScreen.style.display = "flex";
+  const authScreen = $("authScreen");
 
-  document.querySelectorAll(".sidebar, .main").forEach(element => {
-    element.style.display = "none";
-  });
+  if (error || !data.session) {
+    showLoginScreen();
+    return;
+  }
 
-  return;
-}
   try {
+    const user = data.session.user;
+
+    $("profileEmailDisplay").textContent = user.email || "";
+
+    // Load this authenticated user's profile from Supabase.
+    await loadProfileFromCloud(user);
+
+    // Load the user's financial data.
     await loadTransactionsFromCloud();
     await loadBudgetsFromCloud();
+    await loadGoalsFromCloud();
+
     authScreen.style.display = "none";
+
     document.querySelectorAll(".sidebar, .main").forEach(element => {
       element.style.display = "";
     });
+
+    renderProfileView();
+    render();
   } catch (error) {
-    console.error("Cloud transaction loading failed:", error);
-    document.getElementById("authMessage").textContent =
-      "Could not load cloud transactions: " + error.message;
-    authScreen.style.display = "flex";
+    console.error("Cloud session load error:", error);
+    authScreen.style.display = "none";
+
+    document.querySelectorAll(".sidebar, .main").forEach(element => {
+      element.style.display = "";
+    });
   }
 }
 
 
-  showAuthMode("login");
-  checkFinovaSession();
-  
+showAuthMode("login");
+checkFinovaSession();
 
-document.getElementById("logoutButton")?.addEventListener("click", async () => {
+$("logoutButton")?.addEventListener("click", async () => {
   try {
-    const { error } = await supabaseClient.auth.signOut();
-
-    if (error) {
-      alert("Logout failed: " + error.message);
-      return;
-    }
-
-showLoginScreen();    document.querySelectorAll(".sidebar, .main").forEach(element => {
-      element.style.display = "none";
-    });
-
+    await supabaseClient.auth.signOut();
+    showLoginScreen();
     showAuthMode("login");
   } catch (error) {
     alert("Logout failed: " + error.message);
   }
 });
-
-
 </script>
-</body>
-
 </body>
 </html>
